@@ -1,0 +1,117 @@
+body {
+    background: url("/static/assets/images/bg.jpg") no-repeat center/cover;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, sans-serif;
+    flex-direction: column; /* Add this line to allow stacking of flash messages and login container */
+}
+
+.flash-messages {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: auto;
+    text-align: center;
+    z-index: 999;
+    animation: fadeOut 1s ease-in 4s forwards;
+    transition: opacity 0.8s ease;
+}
+
+.flash-messages ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.flash-messages li {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 5px;
+    border-radius: 6px;
+    font-weight: bold;
+    font-family: sans-serif;
+    font-size: 14px;
+}
+
+.success {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.error, .danger {
+    background-color: #f44336;
+    color: white;
+}
+
+.warning {
+    background-color: #ff9800;
+    color: white;
+}
+
+.info {
+    background-color: #2196F3;
+    color: white;
+}
+
+@keyframes fadeOut {
+    to {
+        opacity: 0;
+        visibility: hidden;
+    }
+}
+
+.login-container {
+    background: rgba(0, 0, 0, 0.8);
+    padding: 30px;
+    border-radius: 10px;
+    color: white;
+    max-height: 400px;
+    height: 100%;
+    max-width: 400px;
+    width: 100%;
+    text-align: center;
+}
+
+.input-group {
+    margin-bottom: 15px;
+}
+
+.form-control {
+    width: 100%;
+    padding: 10px;
+    background: transparent;
+    border: 1px solid white;
+    color: white;
+    border-radius: 5px;
+}
+
+.form-control::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.btn-login {
+    background-color: red;
+    border: none;
+    width: 100%;
+    padding: 10px;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.btn-login:hover {
+    background-color: darkred;
+}
+
+.sign-up {
+    margin-top: 25px;
+}
+
+.sign-up a {
+    color: cyan;
+    text-decoration: none;
+}

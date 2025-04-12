@@ -1,0 +1,57 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create Account</title>
+  <link rel="stylesheet" href="{% static 'home.css' %}">
+</head>
+
+<body>
+
+  {% if messages %}
+  <div class="flash-messages" id="flashBox">
+    <ul>
+      {% for message in messages %}
+      <li class="msg {{ message.tags }}">{{ message }}</li>
+      {% endfor %}
+    </ul>
+  </div>
+  {% endif %}
+
+  <div class="container">
+    <div class="form-box">
+      <h1>Your Personal Guide to the World of Film</h1>
+      <h1>Create Account</h1>
+      <form action="{% url 'home' %}" method="POST">
+        {% csrf_token %}
+        <div class="input-box">
+          <input type="text" class="form-control" name="username" id="username" placeholder="Full Name" required>
+        </div>
+        <div class="input-box">
+          <input type="email" class="form-control" name="email" id="email" placeholder="Email" required>
+        </div>
+        <div class="input-box">
+          <input type="password" class="form-control" name="password" id="password" placeholder="Password" required>
+        </div>
+        <div class="input-box">
+          <input type="password" class="form-control" name="cnf_password" id="cnf_password"
+            placeholder="Confirm Password" required>
+        </div>
+        <div class="checkbox">
+          <input type="checkbox" id="terms">
+          <label for="terms">I have read and agreed to the Terms of Service and Privacy Policy</label>
+        </div>
+        <button type="submit" class="btn">Create Account</button>
+        <p class="login-link">Already have an account? <a href="{% url 'log' %}">Log In</a></p>
+        <p class="login-link">Want to delete your account? <a href="{% url 'deluser' %}">Delete Account</a></p>
+      </form>
+    </div>
+  </div>
+
+  
+</body>
+
+</html>

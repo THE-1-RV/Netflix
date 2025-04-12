@@ -1,0 +1,47 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Page</title>
+  <link rel="stylesheet" href="{% static 'log.css' %}">
+</head>
+
+<body>
+
+  {% if messages %}
+  <div class="flash-messages" id="flashBox">
+    <ul>
+      {% for message in messages %}
+      <li class="msg {{ message.tags }}">{{ message }}</li>
+      {% endfor %}
+    </ul>
+  </div>
+  {% endif %}
+
+  <div class="login-container text-center">
+    <h1>Lights, Camera, Discover</h1>
+    <h2>Login</h2>
+    <form action="{% url 'log' %}" method="POST">
+      {% csrf_token %}
+      <div class="input-group">
+        <input type="email" class="form-control" placeholder="Email" name="email" id="email" required>
+      </div>
+      <div class="input-group">
+        <input type="password" class="form-control" placeholder="Password" name="password" id="password" required>
+      </div>
+      <button type="submit" class="btn-login">Login</button>
+    </form>
+
+    <div class="sign-up">
+      Don't have an account? <a href="{% url 'home' %}">Sign in</a><br>
+      Want to delete your account? <a href="{% url 'deluser' %}">Delete Account</a>
+    </div>
+  </div>
+
+
+</body>
+
+</html>

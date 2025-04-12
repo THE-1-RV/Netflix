@@ -1,0 +1,53 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete account</title>
+    <link rel="stylesheet" href="{% static 'deluser.css' %}">
+</head>
+
+<body>
+
+
+    {% if messages %}
+    <div class="flash-messages" id="flashBox">
+        <ul>
+            {% for message in messages %}
+            <li class="msg {{ message.tags }}">{{ message }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+
+
+    <div class="login-container text-center">
+        <h1>Lights, Camera, Discover</h1>
+        <pre></pre>
+        <h2>Delete Account</h2>
+        <form action="{% url 'deluser' %}" method="POST">
+            {% csrf_token %}
+            <div class="input-group">
+                <input type="email" class="form-control" placeholder="Email" name="email" id="email">
+                <pre> </pre>
+            </div>
+
+            <div class="input-group">
+                <input type="password" class="form-control" placeholder="Password" name="password" id="password">
+                <pre> </pre>
+            </div>
+            <button type="submit" class="btn-login">Delete account</button>
+
+            <p>Don't have an account? <a href="{% url 'home' %}">Sign in</a>
+            <pre></pre>
+            Already have an account? <a href="{% url 'log' %}">Log In</a></p>
+        </form>
+
+    </div>
+    
+</body>
+
+</html>
