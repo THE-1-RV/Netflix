@@ -11,6 +11,13 @@
 
 <body>
 
+  <!-- Netflix logo -->
+  <div class="nav">
+    <div class="leftnav">
+      <img src="{% static 'assets/images/logo.svg' %}" alt="Netflix Logo">
+    </div>
+  </div>
+
   {% if messages %}
   <div class="flash-messages" id="flashBox">
     <ul>
@@ -22,9 +29,9 @@
   {% endif %}
 
   <div class="login-container text-center">
-    <h1>Lights, Camera, Discover</h1>
-    <h2>Login</h2>
-    <form action="{% url 'log' %}" method="POST">
+    <h1 class="trans">Lights, Camera, Discover</h1>
+    <h2 class="trans">Login</h2>
+    <form action="{% url 'log' %}" method="POST" class="spacing trans">
       {% csrf_token %}
       <div class="input-group">
         <input type="email" class="form-control" placeholder="Email" name="email" id="email" required>
@@ -35,12 +42,11 @@
       <button type="submit" class="btn-login">Login</button>
     </form>
 
-    <div class="sign-up">
-      Don't have an account? <a href="{% url 'home' %}">Sign in</a><br>
+    <div class="sign-up trans">
+      Don't have an account? <a href="{% url 'home' %}">Sign in</a><br><br>
       Want to delete your account? <a href="{% url 'deluser' %}">Delete Account</a>
     </div>
   </div>
-
 
 </body>
 
