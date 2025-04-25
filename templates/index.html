@@ -37,7 +37,12 @@
                             <option value="Hindi">Hindi</option>
                         </select></button>
                 </span>
-                <span><a href="{% url 'home' %}"><button type="button" class="signin">Sign In</button></a>
+                <span>
+                    {% if user.is_authenticated %}
+                        <a href="{% url 'logout' %}"><button type="button" class="signin">Log Out</button></a>
+                    {% else %}
+                        <a href="{% url 'home' %}"><button type="button" class="signin">Sign In</button></a>
+                    {% endif %}
                 </span>
             </div>
         </div>
