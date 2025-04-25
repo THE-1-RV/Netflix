@@ -374,80 +374,76 @@ body {
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
-    height: 20rem;
     width: 80%;
     margin: auto;
     margin-top: 3rem;
+    overflow: hidden;
 }
 
 .reasons h1 {
-    display: flex;
-    justify-content: flex-start;
-    color: rgb(219, 217, 218);
+    font-size: 2.5rem;
+    color: white;
+    margin-bottom: 1.5rem;
+    font-weight: 900;
 }
 
 .reasoncontent {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
     width: 100%;
-    height: 100%;
-    margin: auto;
+    padding-bottom: 1rem;
+}
+
+.reasoning {
+    background-color: rgb(35, 35, 35);
+    border-radius: 16px;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
     position: relative;
+    height: 250px;
+    box-sizing: border-box;
 }
 
-.reasoncontent .reasoning {
-    height: 82%;
-    width: 24%;
-    background-color: rgb(38, 38, 38);
-    border-radius: 20px;
-    text-align: left;
-    position: relative;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.reasoncontent .reasoning:hover {
-    transform: scale(1.03);
-    box-shadow: 0 10px 30px rgba(255, 255, 255, 0.08);
-}
-
-.reasoncontent .reasoning h1 {
-    font-size: 1.1rem;
+.reasoning h1 {
+    font-size: 1.5rem;
     color: white;
-    margin: 1rem;
+    margin-bottom: 0.75rem;
+    padding-left: 0;
+    font-weight: 500;
 }
 
-.reasoncontent .reasoning p {
-    font-size: 1.05rem;
-    color: white;
-    margin: 1.1rem;
+.reasoning p {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 1.5;
+    margin-bottom: 2rem;
+    flex: 1;
 }
 
-.reasoncontent .reasoning svg {
+.reasoning svg {
+    width: 48px;
+    height: 48px;
     position: absolute;
-    right: 3px;
-    bottom: 15px;
-    margin-right: 1rem;
-    border-radius: 20px;
-    height: 21%;
-    width: 21%;
+    bottom: 1.5rem;
+    right: 1.5rem;
 }
 
 .faq {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    background-color: transparent;
-    height: auto;
     width: 80%;
     margin: auto;
-    margin-top: 1rem;
+    margin-top: 3rem;
 }
 
 .faq h1 {
-    display: flex;
-    justify-content: flex-start;
-    color: rgb(255, 254, 252);
+    font-size: 2.5rem;
+    color: white;
+    margin-bottom: 1.5rem;
+    font-weight: 900;
 }
 
 .faq .questions {
@@ -593,104 +589,127 @@ body {
 .footer {
     display: flex;
     flex-direction: column;
-    /* justify-content: center; */
-    align-items: center;
-    background-color: transparent;
-    height: 28rem;
+    align-items: flex-start;
     width: 80%;
-    margin: auto;
-    margin-top: 1rem;
+    margin: 3rem auto 2rem auto;
+    padding: 0;
+    color: rgba(255, 255, 255, 0.7);
 }
 
 .footer .call {
     display: flex;
-    color: rgb(184, 184, 184);
-    background-color: transparent;
-    height: 4rem;
-    width: 100%;
-    margin-top: 1rem;
-    font-size: 1.1rem;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+    font-size: 1rem;
+}
+
+.footer .call a {
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+}
+
+.footer .call a:hover {
+    text-decoration: underline;
 }
 
 .footer .links {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    /* gap: 0.8rem; */
-    background-color: transparent;
-    height: 30%;
+    gap: 0.75rem 1rem;
     width: 100%;
-    /* padding: 1rem; */
-    border-radius: 20px;
-    position: relative;
-    z-index: 2;
+    margin-bottom: 1.5rem;
 }
 
 .footer .links a {
-    /* text-decoration: none; */
-    color: rgb(184, 184, 184);
-    font-size: 0.9rem;
-    font-weight: 600;
-    border-radius: 20px;
-    transition: background-color 0.3s ease;
+    color: white;
+    text-decoration: underline;
+    font-size: 0.85rem;
+    padding: 0;
+    line-height: 1.4;
+    transition: opacity 0.2s ease;
 }
 
 .footer .links a:hover {
-  color: white;
+    opacity: 0.8;
 }
 
-.footer .translatebutton {
-    margin-top: 3.2rem;
-    display: flex;
-    width: 100%;
-    justify-content: flex-start;
+.footer .language-select {
+    margin: 1.5rem 0;
 }
 
-.footer .translatebutton .translate {
+.footer span {
+    display: inline-block;
+    margin: 1.5rem 0;
+}
+
+.footer .translate {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
     background-color: transparent;
-    border: 2px solid grey;
-    color: white;
-    font-size: 1rem;
+    border: 1px solid rgba(140, 140, 140, 0.7);
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.9rem;
     height: 2.2rem;
-    width: 7.7rem;
+    padding: 0 0.9rem;
     cursor: pointer;
     border-radius: 50px;
+    vertical-align: middle;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
-.footer .translatebutton .translate select {
-    text-align: center;
-    background-color: transparent;
-    border: none;
-    color: white;
-    cursor: pointer;
-    border-radius: 50px;
-    font-weight: 700;
-    outline: none;
-
-}
-
-.footer .translatebutton .translate img {
+.footer .translate img {
+    width: 16px;
+    height: 16px;
     display: inline-block;
     vertical-align: middle;
 }
 
-.footer .translatebutton .translate option {
-    text-align: center;
-    background-color: white;
+.footer .translate select {
+    background-color: transparent;
     border: none;
-    color: black;
+    color: inherit;
     cursor: pointer;
-    border-radius: 50px;
+    font-weight: 500;
+    font-size: inherit;
+    padding-right: 1.2rem;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    outline: none;
+    position: relative;
+    line-height: 1;
 }
 
-.footer .text {
-    display: flex;
-    color: rgb(184, 184, 184);
-    background-color: transparent;
-    height: 4rem;
-    width: 100%;
-    font-size: 1rem;
-    font-weight: 600;
-    margin-top: 2rem;
+.footer .translate::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: 0.9rem;
+    transform: translateY(-50%);
+    width: 0;
+    height: 0;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-top: 5px solid currentColor;
+    pointer-events: none;
+}
+
+.footer .translate select option {
+    background-color: black;
+    color: white;
+}
+
+.footer .translate:hover {
+  border-color: white;
+  box-shadow: 0 0 6px rgba(255, 255, 255, 0.2);
+}
+
+.footer .netflix-india {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin-top: 1.5rem;
 }
 
 .flash-messages {
@@ -731,4 +750,441 @@ body {
         opacity: 0;
         visibility: hidden;
     }
+}
+
+/* Responsive Design */
+@media screen and (max-width: 1200px) {
+    .banner h1 {
+        font-size: 3rem;
+    }
+    
+    .banner .para1 {
+        font-size: 1.4rem;
+    }
+    
+    .banner .content {
+        width: 50vw;
+    }
+
+    .reasons, .footer {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 992px) {
+    .nav {
+        padding: 0.3rem 5%;
+    }
+    
+    .rightnav {
+        width: 25%;
+    }
+    
+    .banner {
+        height: 28rem;
+    }
+    
+    .banner h1 {
+        font-size: 2.5rem;
+    }
+    
+    .banner .para1 {
+        font-size: 1.2rem;
+    }
+    
+    .banner .content {
+        width: 60vw;
+    }
+    
+    .trending, .reasons, .faq, .footer {
+        width: 90%;
+    }
+    
+    .topmovies .movieslist {
+        width: 15%;
+    }
+    
+    .reasoncontent {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+
+    .reasoning {
+        height: 220px;
+    }
+
+    .reasoning h1 {
+        font-size: 1.4rem;
+    }
+
+    .reasoning p {
+        font-size: 1rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .reasoning svg {
+        width: 40px;
+        height: 40px;
+    }
+
+    .footer {
+        width: 90%;
+    }
+
+    .footer .links {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.2rem;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .nav {
+        padding: 0.3rem 7%;
+        position: relative;
+    }
+    
+    .rightnav {
+        width: 30%;
+        position: absolute;
+        top: 5rem;
+        right: 0;
+        background: linear-gradient(to bottom,
+            rgb(13, 7, 9) 0%,
+            rgba(43, 15, 15, 0.9) 100%);
+        width: 100%;
+        padding: 1rem;
+        flex-direction: column;
+        align-items: center;
+        display: none;
+    }
+    
+    .rightnav.active {
+        display: flex;
+    }
+    
+    .rightnav .translate,
+    .rightnav .signin {
+        width: 80%;
+        margin: 5px 0;
+    }
+    
+    .menu-toggle {
+        display: block;
+        cursor: pointer;
+        padding: 0.5rem;
+    }
+    
+    .menu-toggle span {
+        display: block;
+        width: 25px;
+        height: 3px;
+        background-color: white;
+        margin: 5px 0;
+        transition: 0.3s;
+    }
+    
+    .banner {
+        height: 25rem;
+    }
+    
+    .banner h1 {
+        font-size: 2rem;
+    }
+    
+    .banner .para1 {
+        font-size: 1.1rem;
+    }
+    
+    .banner .para2 {
+        font-size: 0.9rem;
+    }
+    
+    .banner .content {
+        width: 70vw;
+    }
+    
+    .banner .email {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .banner .email input,
+    .banner .email button {
+        width: 100%;
+        margin: 5px 0;
+    }
+    
+    .topmovies {
+        overflow-x: auto;
+        gap: 1rem;
+        padding-bottom: 1rem;
+    }
+    
+    .topmovies .movieslist {
+        min-width: 120px;
+        flex-shrink: 0;
+    }
+    
+    .reasoncontent {
+        grid-template-columns: 1fr;
+    }
+    
+    .reasoning {
+        height: 200px;
+    }
+    
+    .reasoning p {
+        margin-bottom: 1.5rem;
+    }
+    
+    .reasoning svg {
+        width: 60px;
+        height: 60px;
+    }
+
+    .footer {
+        width: 95%;
+        padding: 1.5rem 0;
+    }
+
+    .footer .links {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+
+    .footer .call {
+        font-size: 0.9rem;
+    }
+
+    .footer .translatebutton {
+        margin-top: 0.5rem;
+    }
+
+    .footer .translatebutton .translate {
+        width: 100%;
+        max-width: 300px;
+    }
+
+    .end {
+        width: 80%;
+    }
+    
+    .end .email {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .end .email input,
+    .end .email button {
+        width: 100%;
+        margin: 5px 0;
+    }
+
+    .reasons, .faq {
+        padding: 0 1rem;
+    }
+
+    .topmovies .number {
+        display: none; /* Hide numbers on smaller screens */
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .nav {
+        padding: 0.3rem 10%;
+    }
+    
+    .banner {
+        height: 22rem;
+    }
+    
+    .banner h1 {
+        font-size: 1.8rem;
+    }
+    
+    .banner .para1 {
+        font-size: 1rem;
+    }
+    
+    .banner .para2 {
+        font-size: 0.8rem;
+    }
+    
+    .banner .content {
+        width: 85vw;
+    }
+    
+    .trending, .reasons, .faq, .footer {
+        width: 95%;
+    }
+    
+    .topmovies .movieslist {
+        min-width: 100px;
+    }
+    
+    .reasoncontent {
+        padding: 0 0.5rem;
+    }
+    
+    .reasoning {
+        padding: 1.2rem;
+    }
+    
+    .reasoning h1 {
+        font-size: 1.8rem;
+    }
+
+    .reasoning p {
+        font-size: 1rem;
+    }
+
+    .footer {
+        padding: 1.5rem 1rem;
+    }
+
+    .footer .links {
+        grid-template-columns: repeat(1, 1fr);
+        gap: 0.5rem;
+    }
+
+    .footer .links a {
+        padding: 0;
+        border-bottom: none;
+        font-size: 0.9rem;
+    }
+
+    .footer .call {
+        font-size: 0.9rem;
+    }
+
+    .footer .translatebutton {
+        margin-top: 0.5rem;
+    }
+
+    .footer .translatebutton .translate {
+        width: 100%;
+        max-width: 300px;
+    }
+
+    .end {
+        width: 80%;
+    }
+    
+    .end .email {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .end .email input,
+    .end .email button {
+        width: 100%;
+        margin: 5px 0;
+    }
+}
+
+/* Add smooth scrolling for horizontal sections */
+.topmovies::-webkit-scrollbar,
+.reasoncontent::-webkit-scrollbar {
+    height: 8px;
+}
+
+.topmovies::-webkit-scrollbar-track,
+.reasoncontent::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+}
+
+.topmovies::-webkit-scrollbar-thumb,
+.reasoncontent::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 4px;
+}
+
+.topmovies::-webkit-scrollbar-thumb:hover,
+.reasoncontent::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.5);
+}
+
+/* Add these new styles for better grid layout */
+.footer .links {
+    display: grid;
+    width: 100%;
+}
+
+.footer .links a {
+    color: white;
+    text-decoration: underline;
+    font-size: 0.85rem;
+    padding: 0;
+    line-height: 1.4;
+    transition: opacity 0.2s ease;
+}
+
+.footer .links a:hover {
+    opacity: 0.8;
+}
+
+/* Hide scrollbars but keep functionality */
+.topmovies {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.topmovies::-webkit-scrollbar {
+    display: none;
+}
+
+/* Ensure proper spacing in reasons section */
+.reasoncontent {
+    width: 100%;
+    margin: 0 auto;
+}
+
+.reasoning {
+    background-color: rgb(38, 38, 38);
+    border-radius: 20px;
+    padding: 2rem;
+    transition: transform 0.3s ease;
+}
+
+/* Language selector styling */
+.translate {
+    background-color: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    color: white;
+    font-size: 1rem;
+    height: 2.5rem;
+    padding: 0 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.translate:hover {
+    border-color: white;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.translate select {
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 0.9rem;
+    cursor: pointer;
+    padding-right: 1.5rem;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+.translate select:focus {
+    outline: none;
+}
+
+.translate img {
+    width: 16px;
+    height: 16px;
 }
