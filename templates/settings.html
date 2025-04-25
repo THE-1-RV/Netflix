@@ -1,0 +1,201 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account Settings</title>
+    <link rel="stylesheet" href="{% static 'settings.css' %}">
+    <link rel="icon" href="{% static 'assets/images/logo.svg' %}" type="image/svg+xml">
+</head>
+
+<body>
+    <!-- Netflix logo -->
+    <div class="nav">
+        <div class="leftnav">
+            <img src="{% static 'assets/images/logo.svg' %}" alt="Netflix Logo">
+        </div>
+        <div class="rightnav">
+            <a href="{% url 'index' %}"><button type="button" class="back">Back to Home</button></a>
+        </div>
+    </div>
+
+    {% if messages %}
+    <div class="flash-messages" id="flashBox">
+        <ul>
+            {% for message in messages %}
+            <li class="msg {{ message.tags }}">{{ message }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+
+    <div class="settings-container">
+        <h1>Account Settings</h1>
+        
+        <div class="settings-section">
+            <h2>Profile Information</h2>
+            <form action="{% url 'settings' %}" method="POST" class="settings-form">
+                {% csrf_token %}
+                <input type="hidden" name="update_profile">
+                <div class="form-group">
+                    <label for="first_name">Full Name</label>
+                    <input type="text" id="first_name" name="first_name" value="{{ user.first_name }}" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" value="{{ user.email }}" required>
+                </div>
+                <button type="submit" class="update-btn">Update Profile</button>
+            </form>
+        </div>
+
+        <div class="settings-section">
+            <h2>Subscription Details</h2>
+            <div class="settings-form">
+                <div class="form-group">
+                    <label>Current Plan</label>
+                    <div class="plan-details">
+                        <span class="plan-name">Premium</span>
+                        <span class="plan-price">$19.99/month</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Billing Date</label>
+                    <div class="billing-date">Next billing: 15th of each month</div>
+                </div>
+                <button class="update-btn">Manage Subscription</button>
+            </div>
+        </div>
+
+        <div class="settings-section">
+            <h2>Playback Settings</h2>
+            <form action="{% url 'settings' %}" method="POST" class="settings-form">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="autoplay">Autoplay next episode</label>
+                    <select id="autoplay" name="autoplay" class="settings-select">
+                        <option value="on">On</option>
+                        <option value="off">Off</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="data_usage">Data usage per screen</label>
+                    <select id="data_usage" name="data_usage" class="settings-select">
+                        <option value="auto">Auto</option>
+                        <option value="low">Low</option>
+                        <option value="medium">Medium</option>
+                        <option value="high">High</option>
+                    </select>
+                </div>
+                <button type="submit" class="update-btn">Save Playback Settings</button>
+            </form>
+        </div>
+
+        <div class="settings-section">
+            <h2>Download Quality Settings</h2>
+            <form action="{% url 'settings' %}" method="POST" class="settings-form">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="download_quality">Download Quality</label>
+                    <select id="download_quality" name="download_quality" class="settings-select">
+                        <option value="standard">Standard</option>
+                        <option value="high">High</option>
+                        <option value="ultra">Ultra HD</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="download_location">Download Location</label>
+                    <select id="download_location" name="download_location" class="settings-select">
+                        <option value="device">Device Storage</option>
+                        <option value="sd">SD Card</option>
+                    </select>
+                </div>
+                <button type="submit" class="update-btn">Save Download Settings</button>
+            </form>
+        </div>
+
+        <div class="settings-section">
+            <h2>Notification Preferences</h2>
+            <form action="{% url 'settings' %}" method="POST" class="settings-form">
+                {% csrf_token %}
+                <div class="form-group checkbox-group">
+                    <input type="checkbox" id="email_notifications" name="email_notifications" checked>
+                    <label for="email_notifications">Email Notifications</label>
+                </div>
+                <div class="form-group checkbox-group">
+                    <input type="checkbox" id="push_notifications" name="push_notifications" checked>
+                    <label for="push_notifications">Push Notifications</label>
+                </div>
+                <div class="form-group checkbox-group">
+                    <input type="checkbox" id="new_releases" name="new_releases" checked>
+                    <label for="new_releases">New Releases</label>
+                </div>
+                <div class="form-group checkbox-group">
+                    <input type="checkbox" id="recommendations" name="recommendations" checked>
+                    <label for="recommendations">Recommendations</label>
+                </div>
+                <button type="submit" class="update-btn">Save Notification Settings</button>
+            </form>
+        </div>
+
+        <div class="settings-section">
+            <h2>Privacy Settings</h2>
+            <form action="{% url 'settings' %}" method="POST" class="settings-form">
+                {% csrf_token %}
+                <div class="form-group checkbox-group">
+                    <input type="checkbox" id="watch_history" name="watch_history" checked>
+                    <label for="watch_history">Save Watch History</label>
+                </div>
+                <div class="form-group checkbox-group">
+                    <input type="checkbox" id="viewing_activity" name="viewing_activity" checked>
+                    <label for="viewing_activity">Share Viewing Activity</label>
+                </div>
+                <div class="form-group checkbox-group">
+                    <input type="checkbox" id="personalized_ads" name="personalized_ads" checked>
+                    <label for="personalized_ads">Personalized Ads</label>
+                </div>
+                <div class="form-group">
+                    <label for="data_sharing">Data Sharing Preferences</label>
+                    <select id="data_sharing" name="data_sharing" class="settings-select">
+                        <option value="minimal">Minimal</option>
+                        <option value="standard">Standard</option>
+                        <option value="enhanced">Enhanced</option>
+                    </select>
+                </div>
+                <button type="submit" class="update-btn">Save Privacy Settings</button>
+            </form>
+        </div>
+
+        <div class="settings-section">
+            <h2>Change Password</h2>
+            <form action="{% url 'settings' %}" method="POST" class="settings-form">
+                {% csrf_token %}
+                <input type="hidden" name="change_password">
+                <div class="form-group">
+                    <label for="current_password">Current Password</label>
+                    <input type="password" id="current_password" name="current_password" required>
+                </div>
+                <div class="form-group">
+                    <label for="new_password">New Password</label>
+                    <input type="password" id="new_password" name="new_password" required>
+                </div>
+                <div class="form-group">
+                    <label for="confirm_password">Confirm New Password</label>
+                    <input type="password" id="confirm_password" name="confirm_password" required>
+                </div>
+                <button type="submit" class="update-btn">Change Password</button>
+            </form>
+        </div>
+
+        <div class="settings-section">
+            <h2>Account Management</h2>
+            <div class="account-actions">
+                <a href="{% url 'deluser' %}" class="delete-account">Delete Account</a>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html> 

@@ -104,6 +104,24 @@ body {
     transform: scale(1.05);
 }
 
+.rightnav .settings {
+    background-color: transparent;
+    border: 2px solid white;
+    color: white;
+    height: 2.2rem;
+    width: 5.5rem;
+    cursor: pointer;
+    border-radius: 50px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    margin-right: 10px;
+}
+
+.rightnav .settings:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    transform: scale(1.05);
+}
+
 .banner {
     display: flex;
     justify-content: center;

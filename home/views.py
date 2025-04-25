@@ -3,6 +3,7 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.views.decorators.csrf import csrf_exempt
+from django.contrib.auth.decorators import login_required
 from .models import EmailSubscriber
 
 # Create your views here.
@@ -96,3 +97,36 @@ def deluser(request):
             messages.error(request, "User not found.")
 
     return render(request, 'deluser.html')
+
+@login_required
+def settings(request):
+    if request.method == 'POST':
+        # Handle form submissions
+        if 'update_profile' in request.POST:
+            first_name = request.POST.get('first_name')
+            email = request.POST.get('email')
+            
+            # Update user profile
+            user = request.user
+            user.first_name = first_name
+            user.email = email
+            user.save()
+            messages.success(request, "Profile updated successfully!")
+            
+        elif 'change_password' in request.POST:
+            current_password = request.POST.get('current_password')
+            new_password = request.POST.get('new_password')
+            confirm_password = request.POST.get('confirm_password')
+            
+            if new_password != confirm_password:
+                messages.error(request, "New passwords do not match.")
+            else:
+                user = request.user
+                if user.check_password(current_password):
+                    user.set_password(new_password)
+                    user.save()
+                    messages.success(request, "Password changed successfully!")
+                else:
+                    messages.error(request, "Current password is incorrect.")
+    
+    return render(request, 'settings.html')
