@@ -7,3 +7,11 @@ class EmailSubscriber(models.Model):
 
     def __str__(self):
         return self.email
+
+class GiftCard(models.Model):
+    code = models.CharField(max_length=50, unique=True)
+    value = models.IntegerField(help_text="Discount value in Rupees")
+    is_active = models.BooleanField(default=True) # Optional: To deactivate codes later
+
+    def __str__(self):
+        return f"{self.code} (₹{self.value})"

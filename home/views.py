@@ -1,10 +1,10 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
 from django.contrib.auth.models import User
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
-from .models import EmailSubscriber
+from .models import EmailSubscriber, GiftCard
 
 # Create your views here.
 def index(request):
@@ -101,32 +101,69 @@ def deluser(request):
 @login_required
 def settings(request):
     if request.method == 'POST':
-        # Handle form submissions
         if 'update_profile' in request.POST:
-            first_name = request.POST.get('first_name')
-            email = request.POST.get('email')
-            
-            # Update user profile
+            # Handle profile update
             user = request.user
-            user.first_name = first_name
-            user.email = email
+            user.full_name = request.POST.get('full_name')
+            user.email = request.POST.get('email')
             user.save()
-            messages.success(request, "Profile updated successfully!")
-            
+            messages.success(request, 'Profile updated successfully!')
         elif 'change_password' in request.POST:
+            # Handle password change
             current_password = request.POST.get('current_password')
             new_password = request.POST.get('new_password')
             confirm_password = request.POST.get('confirm_password')
             
             if new_password != confirm_password:
-                messages.error(request, "New passwords do not match.")
+                messages.error(request, 'New passwords do not match!')
             else:
                 user = request.user
                 if user.check_password(current_password):
                     user.set_password(new_password)
                     user.save()
-                    messages.success(request, "Password changed successfully!")
+                    update_session_auth_hash(request, user)  # Keep the user logged in
+                    messages.success(request, 'Password changed successfully!')
                 else:
-                    messages.error(request, "Current password is incorrect.")
+                    messages.error(request, 'Current password is incorrect!')
     
     return render(request, 'settings.html')
+
+def gift_cards(request):
+    discount_amount = 0
+    discount_code = None
+    base_prices = {
+        'standard': 199,
+        'premium': 499,
+        'deluxe': 799
+    }
+
+    if request.method == 'POST':
+        entered_code = request.POST.get('gift_code')
+        if entered_code:
+            try:
+                # Find an active gift card with the entered code
+                card = GiftCard.objects.get(code=entered_code, is_active=True)
+                discount_amount = card.value
+                discount_code = card.code # Store the code for context
+                messages.success(request, f'Successfully redeemed code "{card.code}"! You get a discount of ₹{discount_amount}.')
+                # Optional: Deactivate the code after use (if desired)
+                # card.is_active = False
+                # card.save()
+            except GiftCard.DoesNotExist:
+                messages.error(request, "Invalid or inactive gift card code.")
+        else:
+             messages.warning(request, "Please enter a gift card code.")
+
+    # Calculate discounted prices (ensure they don't go below 0)
+    discounted_prices = {
+        key: max(0, price - discount_amount) 
+        for key, price in base_prices.items()
+    }
+
+    context = {
+        'base_prices': base_prices,
+        'discounted_prices': discounted_prices,
+        'discount_amount': discount_amount,
+        'redeemed_code': discount_code
+    }
+    return render(request, 'gift_cards.html', context)

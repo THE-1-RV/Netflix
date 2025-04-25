@@ -106,20 +106,33 @@ body {
 
 .rightnav .settings {
     background-color: transparent;
-    border: 2px solid white;
+    border: 2px solid grey;
     color: white;
     height: 2.2rem;
-    width: 5.5rem;
+    width: 6.5rem;
     cursor: pointer;
     border-radius: 50px;
     font-weight: 600;
     transition: all 0.3s ease;
     margin-right: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    padding: 0 10px;
+}
+
+.rightnav .settings img {
+    width: 16px;
+    height: 16px;
+    display: inline-block;
+    vertical-align: middle;
 }
 
 .rightnav .settings:hover {
     background-color: rgba(255, 255, 255, 0.1);
     transform: scale(1.05);
+    box-shadow: 0 0 8px rgba(255,255,255,0.3);
 }
 
 .banner {
@@ -557,7 +570,7 @@ body {
 .rightnav .translate:hover,
 .footer .translatebutton .translate:hover {
   border-color: white;
-  box-shadow: 0 0 8px rgba(255,255,255,0.3);
+  box-shadow: 0 0 12px rgba(255,255,255,0.4);
 }
 
 .end {

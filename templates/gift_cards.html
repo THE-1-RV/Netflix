@@ -1,0 +1,99 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Netflix Gift Cards</title>
+    <link rel="stylesheet" href="{% static 'gift_cards.css' %}">
+    <link rel="icon" href="{% static 'assets/images/logo.svg' %}" type="image/svg+xml">
+</head>
+<body>
+    <!-- Netflix logo -->
+    <div class="nav">
+        <div class="leftnav">
+            <img src="{% static 'assets/images/logo.svg' %}" alt="Netflix Logo">
+        </div>
+        <div class="rightnav">
+            <a href="{% url 'index' %}" class="back-link"><button type="button" class="back">Back to Home</button></a>
+        </div>
+    </div>
+
+    <div class="container">
+        <h1>Netflix Gift Cards</h1>
+        
+        {% if messages %}
+        <div class="messages">
+            {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}">
+                {{ message }}
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        <div class="gift-cards-section">
+            <div class="gift-card">
+                <div class="gift-card-content">
+                    <h2>Standard Gift Card</h2>
+                    <p class="price">
+                        {% if discount_amount > 0 %}
+                            <del>₹{{ base_prices.standard }}</del> ₹{{ discounted_prices.standard }}
+                        {% else %}
+                            ₹{{ base_prices.standard }}
+                        {% endif %}
+                    </p>
+                    <p class="description">Perfect for starting out</p>
+                    <button class="buy-button">Buy Now</button>
+                </div>
+            </div>
+
+            <div class="gift-card">
+                <div class="gift-card-content">
+                    <h2>Premium Gift Card</h2>
+                    <p class="price">
+                        {% if discount_amount > 0 %}
+                            <del>₹{{ base_prices.premium }}</del> ₹{{ discounted_prices.premium }}
+                        {% else %}
+                            ₹{{ base_prices.premium }}
+                        {% endif %}
+                    </p>
+                    <p class="description">Great for a few months of entertainment</p>
+                    <button class="buy-button">Buy Now</button>
+                </div>
+            </div>
+
+            <div class="gift-card">
+                <div class="gift-card-content">
+                    <h2>Deluxe Gift Card</h2>
+                     <p class="price">
+                        {% if discount_amount > 0 %}
+                            <del>₹{{ base_prices.deluxe }}</del> ₹{{ discounted_prices.deluxe }}
+                        {% else %}
+                            ₹{{ base_prices.deluxe }}
+                        {% endif %}
+                    </p>
+                    <p class="description">Ideal for extended viewing</p>
+                    <button class="buy-button">Buy Now</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="redeem-section">
+            <h2>Redeem a Gift Card</h2>
+            <form method="POST" action="{% url 'gift_cards' %}" class="redeem-form">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="gift_code">Gift Card Code</label>
+                    <input type="text" id="gift_code" name="gift_code" required placeholder="Enter your gift card code" {% if redeemed_code %}value="{{ redeemed_code }}" readonly{% endif %}>
+                </div>
+                 {% if not redeemed_code %}
+                    <button type="submit" class="redeem-button">Redeem</button>
+                 {% else %}
+                    <p style="text-align: center; color: #00a74a;">Code applied!</p>
+                 {% endif %}
+            </form>
+        </div>
+    </div>
+</body>
+</html> 

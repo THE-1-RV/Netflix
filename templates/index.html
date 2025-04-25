@@ -39,7 +39,10 @@
                 </span>
                 {% if user.is_authenticated %}
                     <span>
-                        <a href="{% url 'settings' %}"><button type="button" class="settings">Settings</button></a>
+                        <a href="{% url 'settings' %}"><button type="button" class="settings"><img src="{% static 'assets/images/settings.svg' %}" alt="settings">Settings</button></a>
+                    </span>
+                    <span>
+                        <a href="{% url 'gift_cards' %}"><button type="button" class="settings">Gift Cards</button></a>
                     </span>
                 {% endif %}
                 <span>
