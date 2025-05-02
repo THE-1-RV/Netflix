@@ -86,6 +86,11 @@ function renderCarousels(carousels) {
       imgElem.alt = item.title;
       imgElem.crossOrigin = 'anonymous';
       cardElem.appendChild(imgElem);
+      // Movie title below image
+      const movieTitleElem = document.createElement('div');
+      movieTitleElem.className = 'movie-title';
+      movieTitleElem.textContent = item.title;
+      cardElem.appendChild(movieTitleElem);
       (item.badges || []).forEach(badge => {
         cardElem.insertAdjacentHTML('beforeend', createBadge(badge));
       });

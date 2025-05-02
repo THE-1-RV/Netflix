@@ -190,7 +190,10 @@ body {
 
 .carousel-section {
   margin: 40px 0 0 0;
-  padding: 0;
+  padding: 0 0 40px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .carousel-title {
@@ -198,15 +201,20 @@ body {
   font-size: 1.5rem;
   font-weight: 600;
   margin-bottom: 18px;
-  padding-left: 60px;
+  padding-left: 0;
+  align-self: flex-start;
+  margin-left: 60px;
 }
 
 .carousel-row {
   display: flex;
-  gap: 18px;
+  gap: 28px;
   overflow-x: auto;
-  padding: 0 0 10px 60px;
+  padding: 0 0 10px 0;
   scrollbar-width: none;
+  justify-content: flex-start;
+  width: 100%;
+  max-width: 1200px;
 }
 .carousel-row::-webkit-scrollbar {
   display: none;
@@ -214,27 +222,55 @@ body {
 
 .carousel-card {
   position: relative;
-  min-width: 220px;
-  height: 130px;
-  border-radius: 8px;
+  min-width: 150px;
+  width: 150px;
+  height: 225px;
+  border-radius: 12px;
   overflow: hidden;
-  background: #222;
-  box-shadow: 0 2px 12px 0 rgba(0,0,0,0.3);
-  transition: transform 0.2s;
+  background: #181818;
+  box-shadow: 0 4px 24px 0 rgba(0,0,0,0.45);
+  transition: transform 0.22s, box-shadow 0.22s;
   cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 8px;
 }
 
 .carousel-card img {
   width: 100%;
-  height: 100%;
+  height: 85%;
   object-fit: cover;
   display: block;
+  border-radius: 12px 12px 0 0;
+  background: #222;
+}
+
+.carousel-card .movie-title {
+  color: #fff;
+  font-size: 1.04rem;
+  text-align: center;
+  margin-top: 6px;
+  margin-bottom: 4px;
+  padding: 2px 4px;
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  background: rgba(20,20,20,0.85);
+  border-radius: 0 0 12px 12px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
 }
 
 .carousel-card:hover {
-  transform: scale(1.07);
+  transform: scale(1.09);
   z-index: 2;
-  box-shadow: 0 4px 24px 0 #e50914aa;
+  box-shadow: 0 8px 32px 0 #e50914cc;
+}
+
+.carousel-section:empty, .carousel-row:empty {
+  display: none;
 }
 
 .badge {
