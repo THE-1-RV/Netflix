@@ -263,6 +263,15 @@ body {
   color: #e50914;
 }
 
+.badge.recent {
+  background: #e50914;
+  color: #fff;
+  bottom: 10px;
+  left: 10px;
+  top: auto;
+  position: absolute;
+}
+
 .trailer-video-wrapper {
   position: relative;
   width: 104vw;
