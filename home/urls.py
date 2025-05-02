@@ -11,4 +11,8 @@ urlpatterns = [
     path('deluser/', views.deluser, name='deluser'),
     path('logout/', views.logout_view, name='logout'),
     path('settings/', views.settings, name='settings'),
+    path('api/get_started_data/', views.get_started_data, name='get_started_data'),
+    path('get_started/', views.get_started, name='get_started'),
+    path('api/browse/', views.browse_data, name='browse_data'),
+    path('netflix_main/', views.netflix_main, name='netflix_main'),
 ]

@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Netflix</title>
     <link rel="stylesheet" href="{% static 'index.css' %}">
     <link rel="icon" href="{% static 'assets/images/logo.svg' %}" type="image/svg+xml">
 </head>
@@ -64,12 +64,11 @@
                 </p>
 
                 <span class="email">
-                    <form action="/subscribe/" method="POST">
+                    <form action="/netflix_main/" method="get" onsubmit="event.preventDefault(); window.location.href='/netflix_main/';">
                         {% csrf_token %}
                         <input type="email" name="email" placeholder="Email address" required>
                         <button type="submit">Get Started &nbsp; ></button>
                     </form>
-
                 </span>
             </div>
 
@@ -522,7 +521,7 @@
                 </div>
                 <div class="question q3">
                     <input type="checkbox" id="q3">
-                    <label for="q3">Where can I watch?</label>
+                    <label for="q3">Where can I watch?</lab el>
                     <div class="answer">Watch anywhere, anytime. Sign in with your Netflix account to watch instantly on
                         the web at netflix.com from your personal computer or on any internet-connected device that
                         offers the Netflix app, including smart TVs, smartphones, tablets, streaming media players and
@@ -564,12 +563,11 @@
         <div class="end">
             Ready to watch? Enter your email to create or restart your membership.
             <span class="email">
-                <form action="/subscribe/" method="POST">
+                <form action="/netflix_main/" method="get" onsubmit="event.preventDefault(); window.location.href='/netflix_main/';">
                     {% csrf_token %}
                     <input type="email" name="email" placeholder="Email address" required>
                     <button type="submit">Get Started &nbsp; ></button>
                 </form>
-
             </span>
         </div>
 

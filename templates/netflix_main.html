@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Netflix Main Page</title>
+  <link rel="stylesheet" href="/static/netflix_main.css">
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="logo">
+      <img src="/static/assets/images/logo.svg" alt="Netflix Logo" style="height:2.5rem; vertical-align:middle;">
+    </div>
+    <ul class="nav-links">
+      <li>Home</li>
+      <li>TV Shows</li>
+      <li>Movies</li>
+      <li>Games</li>
+      <li>New & Popular</li>
+      <li>My List</li>
+      <li>Browse by Languages</li>
+    </ul>
+    <div class="nav-icons">
+      <span class="icon">🔍</span>
+      <button class="children-btn">Children</button>
+      <span class="icon">🔔</span>
+      <span class="icon">😊</span>
+    </div>
+  </nav>
+
+  <!-- Trailer Section -->
+  <header class="trailer-section">
+    <div class="trailer-video-wrapper">
+      <video
+        id="trailer-video"
+        class="trailer-video"
+        src="/static/assets/videos/Money Heist _ Series Trailer _ Netflix.mp4"
+        autoplay
+        loop
+        muted
+        playsinline
+      ></video>
+    </div>
+    <div class="trailer-content">
+      <div style="display: flex; align-items: center; gap: 18px;">
+        <h1 class="title">MONEY HEIST</h1>
+        <button id="mute-btn-fixed" class="mute-btn-fixed" aria-label="Unmute"><span id="mute-icon-fixed">🔇</span></button>
+      </div>
+      <div class="movie-desc">A criminal mastermind who goes by the name "The Professor" has a plan to pull off the biggest heist in recorded history. Watch the gripping Spanish series that took the world by storm.</div>
+      <div class="trailer-buttons">
+        <button class="play-btn">Play</button>
+        <button class="info-btn">More Info</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Carousel Section -->
+  <section class="carousel-section">
+    <h2 class="carousel-title">Teen TV Shows</h2>
+    <div class="carousel-row">
+      <div class="carousel-card">
+        <img src="/static/assets/images/weakhero.jpg" alt="Weak Hero">
+        <div class="badge new">New Season</div>
+        <div class="badge top10">Top 10</div>
+      </div>
+      <!-- Repeat .carousel-card for each show -->
+    </div>
+  </section>
+
+  <section class="carousel-section">
+    <h2 class="carousel-title">Asian Movies & TV</h2>
+    <div class="carousel-row">
+      <div class="carousel-card">
+        <img src="/static/assets/images/squid.jpeg" alt="Squid Game">
+        <div class="badge">Top 10</div>
+      </div>
+      <!-- Repeat .carousel-card for each show -->
+    </div>
+  </section>
+
+  <script src="/static/netflix_main.js"></script>
+</body>
+</html> 

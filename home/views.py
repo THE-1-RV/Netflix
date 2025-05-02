@@ -5,6 +5,8 @@ from django.contrib.auth.models import User
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
 from .models import EmailSubscriber, GiftCard
+from django.http import JsonResponse
+from urllib.parse import quote
 
 # Create your views here.
 def index(request):
@@ -167,3 +169,138 @@ def gift_cards(request):
         'redeemed_code': discount_code
     }
     return render(request, 'gift_cards.html', context)
+
+def get_started_data(request):
+    # Sample trending shows (in a real app, fetch from DB)
+    trending_shows = [
+        {"title": "Money Heist", "image": "/static/assets/images/moneyheist.jpg"},
+        {"title": "Squid Game", "image": "/static/assets/images/squid.jpeg"},
+        {"title": "Stranger Things", "image": "/static/assets/images/strangerthings.jpg"},
+        {"title": "Breaking Bad", "image": "/static/assets/images/breakingbad.jpg"},
+    ]
+    # Sample plans (in a real app, fetch from DB)
+    plans = [
+        {"name": "Mobile", "price": 149, "features": ["Watch on mobile/tablet", "SD quality"]},
+        {"name": "Basic", "price": 199, "features": ["Watch on any device", "HD available"]},
+        {"name": "Standard", "price": 499, "features": ["2 screens at a time", "Full HD"]},
+        {"name": "Premium", "price": 649, "features": ["4 screens at a time", "Ultra HD"]},
+    ]
+    return JsonResponse({"trending_shows": trending_shows, "plans": plans})
+
+def get_started(request):
+    return render(request, 'get_started.html')
+
+def browse_data(request):
+    # Family-friendly, sanskari movies/shows with fetchable posters only
+    poster_urls = {
+        "Ramayana": "https://upload.wikimedia.org/wikipedia/en/2/2e/Ramayan_1987_TV_series.jpg",
+        "Mahabharat": "https://upload.wikimedia.org/wikipedia/en/2/2b/Mahabharat_1988_TV_series.jpg",
+        "Swades": "https://upload.wikimedia.org/wikipedia/en/7/7e/Swades_poster.jpg",
+        "Taare Zameen Par": "https://upload.wikimedia.org/wikipedia/en/8/86/Taare_Zameen_Par.jpg",
+        "Chak De India": "https://upload.wikimedia.org/wikipedia/en/2/2e/Chak_De%21_India.jpg",
+        "Lagaan": "https://upload.wikimedia.org/wikipedia/en/b/b6/Lagaan.jpg",
+        "Dangal": "https://upload.wikimedia.org/wikipedia/en/9/99/Dangal_Poster.jpg",
+        "3 Idiots": "https://upload.wikimedia.org/wikipedia/en/d/df/3_idiots_poster.jpg",
+        "Bajrangi Bhaijaan": "https://upload.wikimedia.org/wikipedia/en/6/6e/Bajrangi_Bhaijaan_Poster.jpg",
+        "Queen": "https://upload.wikimedia.org/wikipedia/en/2/22/QueenMoviePoster7thMarch.jpg",
+        "Chhota Bheem": "https://upload.wikimedia.org/wikipedia/en/2/2c/Chhota_Bheem_and_the_Throne_of_Bali.jpg",
+        "Motu Patlu": "https://upload.wikimedia.org/wikipedia/en/2/2e/Motu_Patlu_King_of_Kings_poster.jpg",
+        "Doraemon": "https://upload.wikimedia.org/wikipedia/en/7/7e/Doraemon_2005.png",
+        "Bal Ganesh": "https://upload.wikimedia.org/wikipedia/en/2/2e/Bal_Ganesh_poster.jpg",
+        "Little Singham": "https://upload.wikimedia.org/wikipedia/en/2/2e/Little_Singham_poster.jpg",
+        "Krishna Aur Kans": "https://upload.wikimedia.org/wikipedia/en/2/2e/Krishna_Aur_Kans_poster.jpg",
+        "Hanuman": "https://upload.wikimedia.org/wikipedia/en/2/2e/Hanuman_2005_poster.jpg",
+        "Jungle Book": "https://upload.wikimedia.org/wikipedia/en/7/7e/The_Jungle_Book_%282016%29_poster.jpg",
+        "Frozen": "https://upload.wikimedia.org/wikipedia/en/0/05/Frozen_%282013_film%29_poster.jpg",
+        "Toy Story": "https://upload.wikimedia.org/wikipedia/en/1/13/Toy_Story.jpg",
+        "Finding Nemo": "https://upload.wikimedia.org/wikipedia/en/2/29/Finding_Nemo.jpg",
+        "Kung Fu Panda": "https://upload.wikimedia.org/wikipedia/en/7/76/Kungfupanda.jpg",
+        "Zootopia": "https://upload.wikimedia.org/wikipedia/en/e/ea/Zootopia.jpg",
+        "Coco": "https://upload.wikimedia.org/wikipedia/en/9/9f/Coco_%282017_film%29.png",
+        "Up": "https://upload.wikimedia.org/wikipedia/en/0/05/Up_%282009_film%29.jpg",
+        "Paddington": "https://upload.wikimedia.org/wikipedia/en/6/6e/Paddington_%28film%29.jpg",
+        "The Lion King": "https://upload.wikimedia.org/wikipedia/en/3/3d/The_Lion_King_poster.jpg",
+        "Chillar Party": "https://upload.wikimedia.org/wikipedia/en/2/2e/Chillar_Party_poster.jpg",
+        "Stanley Ka Dabba": "https://upload.wikimedia.org/wikipedia/en/2/2e/Stanley_Ka_Dabba_poster.jpg",
+    }
+    # Only use movies/shows with fetchable posters
+    available_titles = list(poster_urls.keys())
+    def get_image(title):
+        return poster_urls.get(title)
+    categories = [
+        {
+            "title": "Today's Top Picks for Kids",
+            "items": [
+                {"title": t, "image": get_image(t), "badges": b} for t, b in [
+                    ("Ramayana", ["Classic"]),
+                    ("Mahabharat", ["Classic"]),
+                    ("Chhota Bheem", ["Animated"]),
+                    ("Motu Patlu", ["Animated"]),
+                    ("Doraemon", ["Animated"]),
+                    ("Bal Ganesh", ["Mythology"]),
+                    ("Little Singham", ["Action"]),
+                    ("Krishna Aur Kans", ["Mythology"]),
+                    ("Hanuman", ["Mythology"]),
+                    ("Jungle Book", ["Adventure"]),
+                ]
+            ]
+        },
+        {
+            "title": "Family Blockbusters",
+            "items": [
+                {"title": t, "image": get_image(t), "badges": b} for t, b in [
+                    ("Swades", ["Inspiring"]),
+                    ("Taare Zameen Par", ["Family"]),
+                    ("Chak De India", ["Sports"]),
+                    ("Lagaan", ["Epic"]),
+                    ("Dangal", ["Blockbuster"]),
+                    ("3 Idiots", ["Comedy"]),
+                    ("Bajrangi Bhaijaan", ["Family"]),
+                    ("Queen", ["Feel Good"]),
+                    ("Chillar Party", ["Kids"]),
+                    ("Stanley Ka Dabba", ["Kids"]),
+                ]
+            ]
+        },
+        {
+            "title": "Animated & International",
+            "items": [
+                {"title": t, "image": get_image(t), "badges": b} for t, b in [
+                    ("Frozen", ["Animated"]),
+                    ("Toy Story", ["Animated"]),
+                    ("Finding Nemo", ["Animated"]),
+                    ("Kung Fu Panda", ["Animated"]),
+                    ("Zootopia", ["Animated"]),
+                    ("Coco", ["Animated"]),
+                    ("Up", ["Animated"]),
+                    ("Paddington", ["Family"]),
+                    ("The Lion King", ["Classic"]),
+                    ("Jungle Book", ["Adventure"]),
+                ]
+            ]
+        },
+        {
+            "title": "Top 10 for Kids in India Today",
+            "items": [
+                {"title": t, "image": get_image(t), "badges": b} for t, b in [
+                    ("Chhota Bheem", ["Top 10"]),
+                    ("Motu Patlu", ["Top 10"]),
+                    ("Doraemon", ["Top 10"]),
+                    ("Bal Ganesh", ["Top 10"]),
+                    ("Little Singham", ["Top 10"]),
+                    ("Krishna Aur Kans", ["Top 10"]),
+                    ("Hanuman", ["Top 10"]),
+                    ("Frozen", ["Top 10"]),
+                    ("Toy Story", ["Top 10"]),
+                    ("Finding Nemo", ["Top 10"]),
+                ]
+            ]
+        }
+    ]
+    return JsonResponse({"categories": categories})
+
+def browse(request):
+    return render(request, 'browse.html')
+
+def netflix_main(request):
+    return render(request, 'netflix_main.html')
