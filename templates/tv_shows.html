@@ -1,0 +1,56 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TV Shows - Netflix</title>
+    <link rel="stylesheet" href="{% static 'index.css' %}">
+    <link rel="stylesheet" href="{% static 'tv_shows.css' %}">
+    <link rel="icon" href="{% static 'assets/images/logo.svg' %}" type="image/svg+xml">
+</head>
+<body>
+    <div class="main">
+        <div class="nav">
+            <div class="leftnav"><img src="{% static 'assets/images/logo.svg' %}" alt="logo"></div>
+            <ul class="nav-links">
+                <li><a href="{% url 'netflix_main' %}">Home</a></li>
+                <li class="active"><a href="{% url 'tv_shows' %}">TV Shows</a></li>
+                <li><a href="{% url 'movies' %}">Movies</a></li>
+                <li><a href="{% url 'games' %}">Games</a></li>
+                <li><a href="{% url 'new_popular' %}">New & Popular</a></li>
+                <li><a href="{% url 'my_list' %}">My List</a></li>
+                <li><a href="{% url 'browse_languages' %}">Browse by Languages</a></li>
+            </ul>
+        </div>
+        <!-- Hero/Trailer Section -->
+        <div class="tv-hero" style="position:relative;display:flex;align-items:center;min-height:60vh;background:rgba(0,0,0,0.7);border-radius:20px;margin:2rem 0 2rem 0;overflow:hidden;">
+            <img id="hero-image" src="{% static 'assets/images/squid.jpeg' %}" alt="Squid Game" style="width:50vw;max-width:600px;border-radius:20px 0 0 20px;object-fit:cover;min-height:320px;">
+            <video id="hero-video" style="display:none;width:50vw;max-width:600px;border-radius:20px 0 0 20px;object-fit:cover;min-height:320px;" controls poster="{% static 'assets/images/squid.jpeg' %}"></video>
+            <div style="padding:2.5rem 2.5rem 2.5rem 2.5rem;max-width:600px;">
+                <h1 style="font-size:2.8rem;font-weight:800;color:#fff;text-shadow:2px 2px 16px #000;letter-spacing:1px;">STRANGER THINGS</h1>
+                <p style="font-size:1.2rem;color:#fff;line-height:1.5;margin-top:1.2rem;text-shadow:1px 1px 8px #000;">When a young boy vanishes, a small town uncovers a mystery involving secret experiments, terrifying supernatural forces and one strange little girl.</p>
+                <div style="margin-top:2rem;display:flex;gap:1.2rem;align-items:center;">
+                    <button id="play-trailer-btn" style="background:#fff;color:#000;font-weight:700;padding:0.7rem 2.2rem;border-radius:6px;font-size:1.1rem;cursor:pointer;position:relative;">Play</button>
+                    <div id="trailer-spinner" style="display:none;width:28px;height:28px;border:4px solid #fff;border-top:4px solid #e50914;border-radius:50%;animation:spin 1s linear infinite;"></div>
+                    <button style="background:rgba(109,109,110,0.7);color:#fff;font-weight:700;padding:0.7rem 2.2rem;border-radius:6px;font-size:1.1rem;cursor:pointer;">More Info</button>
+                </div>
+            </div>
+        </div>
+        <!-- Carousel Section -->
+        <div class="trending" style="margin-top:0;">
+            <div class="now">
+                <h1 style="color:#fff;font-size:2rem;font-weight:700;margin-bottom:1.2rem;">Popular on Netflix</h1>
+            </div>
+            <div class="topmovies" id="popular-shows"></div>
+        </div>
+    </div>
+    <script src="{% static 'tv_shows.js' %}"></script>
+    <style>
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    </style>
+</body>
+</html>

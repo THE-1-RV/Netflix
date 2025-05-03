@@ -304,3 +304,59 @@ def browse(request):
 
 def netflix_main(request):
     return render(request, 'netflix_main.html')
+
+def tv_shows(request):
+    return render(request, 'tv_shows.html')
+
+def movies(request):
+    return render(request, 'movies.html')
+
+def games(request):
+    return render(request, 'games.html')
+
+def new_popular(request):
+    return render(request, 'new_popular.html')
+
+def my_list(request):
+    return render(request, 'my_list.html')
+
+def browse_languages(request):
+    return render(request, 'browse_languages.html')
+
+def tv_shows_data(request):
+    # You can replace this with real DB/API data
+    shows = [
+        {
+            "title": "Stranger Things",
+            "image": "/static/assets/images/strangerthings.jpg",
+            "year": "2016",
+            "rating": "TV-14",
+            "isTop10": True,
+            "isNew": False
+        },
+        {
+            "title": "The Crown",
+            "image": "/static/assets/images/thecrown.jpg",
+            "year": "2016",
+            "rating": "TV-MA",
+            "isTop10": False,
+            "isNew": True
+        },
+        {
+            "title": "Money Heist",
+            "image": "/static/assets/images/moneyheist.jpg",
+            "year": "2017",
+            "rating": "TV-MA",
+            "isTop10": True,
+            "isNew": False
+        },
+        {
+            "title": "Breaking Bad",
+            "image": "/static/assets/images/breakingbad.jpg",
+            "year": "2008",
+            "rating": "TV-MA",
+            "isTop10": False,
+            "isNew": False
+        }
+    ]
+    return JsonResponse({"shows": shows})

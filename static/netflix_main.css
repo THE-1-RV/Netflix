@@ -5,7 +5,7 @@ body {
   color: #fff;
 }
 
-.navbar {
+.nav {
   display: flex;
   align-items: center;
   height: 5rem;
@@ -15,53 +15,49 @@ body {
   margin: auto;
   justify-content: space-between;
   padding: 0.3rem 3%;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.logo {
-  color: #e50914;
-  font-size: 2.2rem;
-  font-weight: bold;
-  letter-spacing: 2px;
-  margin-right: 2.5rem;
-  padding: 0;
-  background: none;
-  border: none;
-  box-shadow: none;
-  border-radius: 0;
-  display: flex;
-  align-items: center;
+.leftnav img {
+  height: 2.5rem;
 }
 
 .nav-links {
   display: flex;
   list-style: none;
   gap: 2rem;
-  flex: 1;
+  margin: 0;
+  padding: 0;
+  align-items: center;
 }
 
 .nav-links li {
-  cursor: pointer;
-  font-size: 1.05rem;
-  font-weight: 500;
-  color: #fff;
-  letter-spacing: 1px;
-  padding: 4px 0;
-  transition: color 0.2s;
-  position: relative;
+  display: inline-block;
 }
 
-.nav-links li:hover {
+.nav-links a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1.08rem;
+  transition: color 0.2s;
+}
+
+.nav-links a:hover, .nav-links .active a {
   color: #e50914;
+}
+
+.nav-links .active a, .nav-links .active {
+  color: #e50914 !important;
+  font-weight: 600;
 }
 
 .nav-icons {
   display: flex;
   align-items: center;
-  gap: 15px;
+  gap: 18px;
 }
 
-.icon, .nav-icons span:not(.icon) {
+.icon {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -76,7 +72,7 @@ body {
   cursor: pointer;
 }
 
-.icon:hover, .nav-icons span:not(.icon):hover {
+.icon:hover {
   background: rgba(255,255,255,0.1);
   color: #e50914;
   border: 2px solid #e50914;
@@ -85,13 +81,18 @@ body {
 
 .trailer-section {
   position: relative;
-  width: 100vw;
+  width: calc(100vw - 48px);
+  height: 73vh;
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  margin: 0;
+  margin: 0 auto;
   padding: 0;
   overflow: hidden;
+  border-radius: 22px;
+  box-shadow: 0 16px 48px 0 rgba(229,9,20,0.18), 0 4px 16px 0 rgba(0,0,0,0.55);
+  transform: scale(1.012);
+  transition: box-shadow 0.25s, transform 0.22s;
 }
 
 .trailer-bg {
@@ -309,29 +310,34 @@ body {
 }
 
 .trailer-video-wrapper {
-  position: relative;
-  width: 104vw;
-  height: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 73vh;
   z-index: 1;
   overflow: hidden;
-  left: 50%;
-  transform: translateX(-50%);
+  transform: none;
+  border-radius: 22px;
+  box-shadow: 0 8px 32px 0 rgba(229,9,20,0.18);
+  transition: box-shadow 0.25s;
+  margin: 0 auto;
 }
 
 .trailer-video {
-  width: 104vw;
-  height: auto;
-  max-width: none;
-  max-height: 100vh;
-  object-fit: contain;
+  width: 100%;
+  height: 73vh;
+  max-width: 100vw;
+  max-height: 73vh;
+  object-fit: cover;
   filter: brightness(1);
   z-index: 1;
   display: block;
   background: #000;
-  left: 50%;
-  transform: translateX(-50%);
-  position: relative;
+  position: absolute;
+  left: 0;
   top: 0;
+  margin: 0 auto;
 }
 
 /* Remove the overlay class entirely */
@@ -374,4 +380,14 @@ body {
   border: 2px solid #e50914;
   color: #fff;
   transform: scale(1.08);
+}
+
+/* Remove old navbar styles */
+.navbar, .logo {
+  all: unset;
+}
+
+html, body {
+  max-width: 100vw;
+  overflow-x: hidden;
 } 
