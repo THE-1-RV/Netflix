@@ -1,4 +1,13 @@
 {% load static %}
+{% if messages %}
+<div class="flash-messages" id="flashBox">
+    <ul>
+        {% for message in messages %}
+        <li class="msg {{ message.tags }}">{{ message }}</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endif %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,18 +21,23 @@
     <div class="leftnav"><img src="{% static 'assets/images/logo.svg' %}" alt="logo"></div>
     <ul class="nav-links">
       <li><a href="{% url 'netflix_main' %}">Home</a></li>
-      <li><a href="{% url 'tv_shows' %}">TV Shows</a></li>
-      <li><a href="{% url 'movies' %}">Movies</a></li>
-      <li><a href="{% url 'games' %}">Games</a></li>
-      <li><a href="{% url 'new_popular' %}">New & Popular</a></li>
-      <li><a href="{% url 'my_list' %}">My List</a></li>
-      <li><a href="{% url 'browse_languages' %}">Browse by Languages</a></li>
+      <li><a href="{% url 'netflix_main' %}">TV Shows</a></li>
+      <li><a href="{% url 'netflix_main' %}">Movies</a></li>
+      <li><a href="{% url 'netflix_main' %}">Games</a></li>
+      <li><a href="{% url 'netflix_main' %}">New & Popular</a></li>
+      <li><a href="{% url 'netflix_main' %}">My List</a></li>
+      <li><a href="{% url 'netflix_main' %}">Browse by Languages</a></li>
     </ul>
     <div class="nav-icons">
       <span class="icon">🔍</span>
       <button class="children-btn">Children</button>
       <span class="icon">🔔</span>
-      <span class="icon">😊</span>
+      <form action="/logout/" method="post" style="display:inline;">
+        {% csrf_token %}
+        <button type="submit" class="icon logout-btn" title="Logout" style="background:none;border:none;padding:0;cursor:pointer;outline:none;">
+          <span>😊</span>
+        </button>
+      </form>
     </div>
   </div>
 

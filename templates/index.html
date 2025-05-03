@@ -64,7 +64,7 @@
                 </p>
 
                 <span class="email">
-                    <form action="/netflix_main/" method="get" onsubmit="event.preventDefault(); window.location.href='/netflix_main/';">
+                    <form action="/log/" method="get">
                         {% csrf_token %}
                         <input type="email" name="email" placeholder="Email address" required>
                         <button type="submit">Get Started &nbsp; ></button>
@@ -563,7 +563,7 @@
         <div class="end">
             Ready to watch? Enter your email to create or restart your membership.
             <span class="email">
-                <form action="/netflix_main/" method="get" onsubmit="event.preventDefault(); window.location.href='/netflix_main/';">
+                <form action="/log/" method="get">
                     {% csrf_token %}
                     <input type="email" name="email" placeholder="Email address" required>
                     <button type="submit">Get Started &nbsp; ></button>

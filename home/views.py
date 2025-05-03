@@ -74,7 +74,7 @@ def log(request):
         if user:
             login(request, user)
             messages.success(request, f"Welcome back, {user.first_name}!")
-            return redirect('index')
+            return redirect('netflix_main')
         else:
             messages.error(request, "Invalid credentials.")
             return redirect('log')
