@@ -102,6 +102,7 @@ body {
 .rightnav .signin:hover {
     background-color: rgba(255, 255, 255, 0.9);
     transform: scale(1.05);
+    box-shadow: 0 0 8px rgba(255,255,255,0.4);
 }
 
 .rightnav .settings {
@@ -132,7 +133,8 @@ body {
 .rightnav .settings:hover {
     background-color: rgba(255, 255, 255, 0.1);
     transform: scale(1.05);
-    box-shadow: 0 0 8px rgba(255,255,255,0.3);
+    border-color: white;
+    box-shadow: 0 0 8px rgba(255,255,255,0.4);
 }
 
 .banner {

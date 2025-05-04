@@ -27,18 +27,30 @@
       <li><a href="{% url 'netflix_main' %}">Games</a></li>
       <li><a href="{% url 'netflix_main' %}">New & Popular</a></li>
       <li><a href="{% url 'netflix_main' %}">My List</a></li>
-      <li><a href="{% url 'netflix_main' %}">Browse by Languages</a></li>
     </ul>
     <div class="nav-icons">
-      <span class="icon">🔍</span>
-      <button class="children-btn">Children</button>
-      <span class="icon">🔔</span>
+      {% if user.is_authenticated %}
+        <span>
+          <a href="{% url 'settings' %}"><button type="button" class="settings"><img src="{% static 'assets/images/settings.svg' %}" alt="settings">Settings</button></a>
+        </span>
+        <span>
+          <a href="{% url 'gift_cards' %}"><button type="button" class="settings">Gift Cards</button></a>
+        </span>
+      {% endif %}
+      <span>
+        {% if user.is_authenticated %}
+          <a href="{% url 'logout' %}"><button type="button" class="signin">Log Out</button></a>
+        {% else %}
+          <a href="{% url 'home' %}"><button type="button" class="signin">Sign In</button></a>
+        {% endif %}
+      </span>
+      <!-- <span class="icon">🔔</span>
       <form action="/logout/" method="post" style="display:inline;">
         {% csrf_token %}
         <button type="submit" class="icon logout-btn" title="Logout" style="background:none;border:none;padding:0;cursor:pointer;outline:none;">
           <span>😊</span>
         </button>
-      </form>
+      </form> -->
     </div>
   </div>
 
