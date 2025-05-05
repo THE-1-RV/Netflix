@@ -154,13 +154,90 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Show card click logic (optional)
-    document.addEventListener('click', (e) => {
-        const showCard = e.target.closest('.show-card');
-        if (showCard) {
-            const showTitle = showCard.querySelector('.show-title').textContent;
-            // Here you can implement navigation to the show details page
-            console.log(`Clicked on show: ${showTitle}`);
+    // Navbar background change on scroll
+    const nav = document.querySelector('.nav');
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 100) {
+            nav.classList.add('scrolled');
+        } else {
+            nav.classList.remove('scrolled');
         }
+    });
+
+    // Show card hover effects
+    const showCards = document.querySelectorAll('.show-card');
+    showCards.forEach(card => {
+        card.addEventListener('mouseenter', function() {
+            this.style.transform = 'scale(1.1)';
+            this.style.zIndex = '2';
+            
+            // Show info panel
+            const info = this.querySelector('.show-info');
+            if (info) {
+                info.style.opacity = '1';
+            }
+        });
+        
+        card.addEventListener('mouseleave', function() {
+            this.style.transform = 'scale(1)';
+            this.style.zIndex = '1';
+            
+            // Hide info panel
+            const info = this.querySelector('.show-info');
+            if (info) {
+                info.style.opacity = '0';
+            }
+        });
+    });
+
+    // Play button functionality
+    const playButton = document.querySelector('.play-button');
+    if (playButton) {
+        playButton.addEventListener('click', function() {
+            // Placeholder for play functionality
+            console.log('Play button clicked');
+        });
+    }
+
+    // More Info button functionality
+    const moreInfoButton = document.querySelector('.more-info-button');
+    if (moreInfoButton) {
+        moreInfoButton.addEventListener('click', function() {
+            // Placeholder for more info functionality
+            console.log('More info button clicked');
+        });
+    }
+
+    // Horizontal scroll for show sliders
+    const sliders = document.querySelectorAll('.shows-slider');
+    sliders.forEach(slider => {
+        let isDown = false;
+        let startX;
+        let scrollLeft;
+
+        slider.addEventListener('mousedown', (e) => {
+            isDown = true;
+            slider.style.cursor = 'grabbing';
+            startX = e.pageX - slider.offsetLeft;
+            scrollLeft = slider.scrollLeft;
+        });
+
+        slider.addEventListener('mouseleave', () => {
+            isDown = false;
+            slider.style.cursor = 'grab';
+        });
+
+        slider.addEventListener('mouseup', () => {
+            isDown = false;
+            slider.style.cursor = 'grab';
+        });
+
+        slider.addEventListener('mousemove', (e) => {
+            if (!isDown) return;
+            e.preventDefault();
+            const x = e.pageX - slider.offsetLeft;
+            const walk = (x - startX) * 2;
+            slider.scrollLeft = scrollLeft - walk;
+        });
     });
 }); 

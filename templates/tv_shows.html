@@ -4,53 +4,223 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TV Shows - Netflix</title>
-    <link rel="stylesheet" href="{% static 'index.css' %}">
+    <title>Netflix TV Shows</title>
     <link rel="stylesheet" href="{% static 'tv_shows.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="icon" href="{% static 'assets/images/logo.svg' %}" type="image/svg+xml">
 </head>
 <body>
-    <div class="main">
+    <!-- Navbar -->
         <div class="nav">
             <div class="leftnav"><img src="{% static 'assets/images/logo.svg' %}" alt="logo"></div>
             <ul class="nav-links">
                 <li><a href="{% url 'netflix_main' %}">Home</a></li>
-                <li class="active"><a href="{% url 'tv_shows' %}">TV Shows</a></li>
-                <li><a href="{% url 'movies' %}">Movies</a></li>
-                <li><a href="{% url 'games' %}">Games</a></li>
-                <li><a href="{% url 'new_popular' %}">New & Popular</a></li>
-                <li><a href="{% url 'my_list' %}">My List</a></li>
-                <li><a href="{% url 'browse_languages' %}">Browse by Languages</a></li>
+            <li><a href="{% url 'tv_shows' %}" class="active">TV Shows</a></li>
+            <li><a href="{% url 'netflix_main' %}">Movies</a></li>
+            <li><a href="{% url 'netflix_main' %}">Games</a></li>
+            <li><a href="{% url 'netflix_main' %}">New & Popular</a></li>
+            <li><a href="{% url 'netflix_main' %}">My List</a></li>
             </ul>
+        <div class="nav-icons">
+            {% if user.is_authenticated %}
+                <span>
+                    <a href="{% url 'settings' %}"><button type="button" class="settings"><img src="{% static 'assets/images/settings.svg' %}" alt="settings">Settings</button></a>
+                </span>
+                <span>
+                    <a href="{% url 'gift_cards' %}"><button type="button" class="settings">Gift Cards</button></a>
+                </span>
+            {% endif %}
+            <span>
+                {% if user.is_authenticated %}
+                    <a href="{% url 'logout' %}"><button type="button" class="signin">Log Out</button></a>
+                {% else %}
+                    <a href="{% url 'home' %}"><button type="button" class="signin">Sign In</button></a>
+                {% endif %}
+            </span>
         </div>
-        <!-- Hero/Trailer Section -->
-        <div class="tv-hero" style="position:relative;display:flex;align-items:center;min-height:60vh;background:rgba(0,0,0,0.7);border-radius:20px;margin:2rem 0 2rem 0;overflow:hidden;">
-            <img id="hero-image" src="{% static 'assets/images/squid.jpeg' %}" alt="Squid Game" style="width:50vw;max-width:600px;border-radius:20px 0 0 20px;object-fit:cover;min-height:320px;">
-            <video id="hero-video" style="display:none;width:50vw;max-width:600px;border-radius:20px 0 0 20px;object-fit:cover;min-height:320px;" controls poster="{% static 'assets/images/squid.jpeg' %}"></video>
-            <div style="padding:2.5rem 2.5rem 2.5rem 2.5rem;max-width:600px;">
-                <h1 style="font-size:2.8rem;font-weight:800;color:#fff;text-shadow:2px 2px 16px #000;letter-spacing:1px;">STRANGER THINGS</h1>
-                <p style="font-size:1.2rem;color:#fff;line-height:1.5;margin-top:1.2rem;text-shadow:1px 1px 8px #000;">When a young boy vanishes, a small town uncovers a mystery involving secret experiments, terrifying supernatural forces and one strange little girl.</p>
-                <div style="margin-top:2rem;display:flex;gap:1.2rem;align-items:center;">
-                    <button id="play-trailer-btn" style="background:#fff;color:#000;font-weight:700;padding:0.7rem 2.2rem;border-radius:6px;font-size:1.1rem;cursor:pointer;position:relative;">Play</button>
-                    <div id="trailer-spinner" style="display:none;width:28px;height:28px;border:4px solid #fff;border-top:4px solid #e50914;border-radius:50%;animation:spin 1s linear infinite;"></div>
-                    <button style="background:rgba(109,109,110,0.7);color:#fff;font-weight:700;padding:0.7rem 2.2rem;border-radius:6px;font-size:1.1rem;cursor:pointer;">More Info</button>
+    </div>
+
+    <!-- Hero Section -->
+    <div class="hero-section">
+        <div class="hero-content">
+            <div class="hero-image stranger-things-bg">
+                <div class="hero-overlay">
+                    <div class="hero-text">
+                        <div class="match-rating">75% Match</div>
+                        <img src="{% static 'assets/images/stranger-things-logo.png' %}" alt="Stranger Things" class="show-logo">
+                        <p class="hero-description">When a young boy vanishes, a small town uncovers a mystery involving secret experiments, terrifying supernatural forces and one strange little girl.</p>
+                        <div class="hero-meta">
+                            <span class="rating">TV-14</span>
+                            <span class="duration">4 Seasons</span>
+                            <span class="genres">Supernatural • Teen • Mystery</span>
+                        </div>
+                        <div class="hero-buttons">
+                            <button class="play-button"><i class="fas fa-play"></i> Play</button>
+                            <button class="more-info-button"><i class="fas fa-info-circle"></i> More Info</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-        <!-- Carousel Section -->
-        <div class="trending" style="margin-top:0;">
-            <div class="now">
-                <h1 style="color:#fff;font-size:2rem;font-weight:700;margin-bottom:1.2rem;">Popular on Netflix</h1>
-            </div>
-            <div class="topmovies" id="popular-shows"></div>
-        </div>
     </div>
+
+    <!-- Main Content -->
+    <div class="shows-container">
+        <!-- Continue Watching -->
+        <section class="shows-row">
+            <h2>Continue Watching</h2>
+            <div class="shows-slider">
+                <div class="show-card">
+                    <img src="{% static 'assets/images/wednesday.jpg' %}" alt="Wednesday">
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 45%"></div>
+                    </div>
+                    <div class="show-info">
+                        <h3>Wednesday</h3>
+                        <div class="meta">
+                            <span>S1:E4</span>
+                            <span>45min left</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="show-card">
+                    <img src="{% static 'assets/images/witcher.jpg' %}" alt="The Witcher">
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 75%"></div>
+                    </div>
+                    <div class="show-info">
+                        <h3>The Witcher</h3>
+                        <div class="meta">
+                            <span>S2:E6</span>
+                            <span>15min left</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="show-card">
+                    <img src="{% static 'assets/images/money-heist.jpg' %}" alt="Money Heist">
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 30%"></div>
+                    </div>
+                    <div class="show-info">
+                        <h3>Money Heist</h3>
+                        <div class="meta">
+                            <span>S1:E2</span>
+                            <span>50min left</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Trending Now -->
+        <section class="shows-row">
+            <h2>Trending Now</h2>
+            <div class="shows-slider">
+                <div class="show-card">
+                    <div class="rank">1</div>
+                    <img src="{% static 'assets/images/squid-game.jpg' %}" alt="Squid Game">
+                    <div class="show-info">
+                        <h3>Squid Game</h3>
+                        <div class="meta">
+                            <span class="new-badge">New</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="show-card">
+                    <div class="rank">2</div>
+                    <img src="{% static 'assets/images/crown.jpg' %}" alt="The Crown">
+                    <div class="show-info">
+                        <h3>The Crown</h3>
+                        <div class="meta">
+                            <span class="trending">Trending</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="show-card">
+                    <div class="rank">3</div>
+                    <img src="{% static 'assets/images/breaking-bad.jpg' %}" alt="Breaking Bad">
+                    <div class="show-info">
+                        <h3>Breaking Bad</h3>
+                        <div class="meta">
+                            <span>Drama</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Popular on Netflix -->
+        <section class="shows-row">
+            <h2>Popular on Netflix</h2>
+            <div class="shows-slider">
+                <div class="show-card">
+                    <img src="{% static 'assets/images/dark.jpg' %}" alt="Dark">
+                    <div class="show-info">
+                        <h3>Dark</h3>
+                        <div class="meta">
+                            <span>Mystery • Thriller</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="show-card">
+                    <img src="{% static 'assets/images/queens-gambit.jpg' %}" alt="The Queen's Gambit">
+                    <div class="show-info">
+                        <h3>The Queen's Gambit</h3>
+                        <div class="meta">
+                            <span>Drama • Chess</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="show-card">
+                    <img src="{% static 'assets/images/bridgerton.jpg' %}" alt="Bridgerton">
+                    <div class="show-info">
+                        <h3>Bridgerton</h3>
+                        <div class="meta">
+                            <span>Romance • Drama</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Award-Winning TV Shows -->
+        <section class="shows-row">
+            <h2>Award-Winning TV Shows</h2>
+            <div class="shows-slider">
+                <div class="show-card">
+                    <div class="award-badge">Emmy Winner</div>
+                    <img src="{% static 'assets/images/breaking-bad.jpg' %}" alt="Breaking Bad">
+                    <div class="show-info">
+                        <h3>Breaking Bad</h3>
+                        <div class="meta">
+                            <span>16 Emmy Awards</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="show-card">
+                    <div class="award-badge">Golden Globe</div>
+                    <img src="{% static 'assets/images/queens-gambit.jpg' %}" alt="The Queen's Gambit">
+                    <div class="show-info">
+                        <h3>The Queen's Gambit</h3>
+                        <div class="meta">
+                            <span>2 Golden Globes</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="show-card">
+                    <div class="award-badge">Emmy Winner</div>
+                    <img src="{% static 'assets/images/crown.jpg' %}" alt="The Crown">
+                    <div class="show-info">
+                        <h3>The Crown</h3>
+                        <div class="meta">
+                            <span>21 Emmy Awards</span>
+                        </div>
+                    </div>
+                </div>
+        </div>
+        </section>
+    </div>
+
     <script src="{% static 'tv_shows.js' %}"></script>
-    <style>
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-    </style>
 </body>
 </html>

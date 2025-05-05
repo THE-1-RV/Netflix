@@ -443,6 +443,11 @@ body {
     position: relative;
     height: 250px;
     box-sizing: border-box;
+    transition: transform 0.3s ease;
+}
+
+.reasoning:hover {
+    transform: scale(1.05);
 }
 
 .reasoning h1 {
