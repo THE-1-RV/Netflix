@@ -21,14 +21,18 @@
   <div class="nav">
     <div class="leftnav"><img src="{% static 'assets/images/logo.svg' %}" alt="logo"></div>
     <ul class="nav-links">
-      <li><a href="{% url 'netflix_main' %}">Home</a></li>
-      <li><a href="{% url 'netflix_main' %}">TV Shows</a></li>
-      <li><a href="{% url 'netflix_main' %}">Movies</a></li>
-      <li><a href="{% url 'netflix_main' %}">Games</a></li>
-      <li><a href="{% url 'netflix_main' %}">New & Popular</a></li>
-      <li><a href="{% url 'netflix_main' %}">My List</a></li>
+      <li><a href="{% url 'netflix_main' %}" class="active">Home</a></li>
+      <li><a href="{% url 'tv_shows' %}">TV Shows</a></li>
+      <li><a href="{% url 'movies' %}">Movies</a></li>
+      <li><a href="{% url 'games' %}">Games</a></li>
+      <li><a href="{% url 'new_popular' %}">New & Popular</a></li>
+      <li><a href="{% url 'my_list' %}">My List</a></li>
     </ul>
     <div class="nav-icons">
+      <!-- <div class="search-bar">
+        <i class="fas fa-search"></i>
+        <input type="text" placeholder="Titles, people, genres">
+      </div> -->
       {% if user.is_authenticated %}
         <span>
           <a href="{% url 'settings' %}"><button type="button" class="settings"><img src="{% static 'assets/images/settings.svg' %}" alt="settings">Settings</button></a>
@@ -44,13 +48,6 @@
           <a href="{% url 'home' %}"><button type="button" class="signin">Sign In</button></a>
         {% endif %}
       </span>
-      <!-- <span class="icon">🔔</span>
-      <form action="/logout/" method="post" style="display:inline;">
-        {% csrf_token %}
-        <button type="submit" class="icon logout-btn" title="Logout" style="background:none;border:none;padding:0;cursor:pointer;outline:none;">
-          <span>😊</span>
-        </button>
-      </form> -->
     </div>
   </div>
 

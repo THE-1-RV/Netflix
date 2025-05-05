@@ -1,0 +1,281 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Netflix - My List</title>
+    <link rel="stylesheet" href="{% static 'my_list.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="icon" href="{% static 'assets/images/logo.svg' %}" type="image/svg+xml">
+</head>
+<body>
+    <!-- Navbar -->
+    <div class="nav">
+        <div class="leftnav">
+            <img src="{% static 'assets/images/logo.svg' %}" alt="Netflix">
+        </div>
+        <ul class="nav-links">
+            <li><a href="{% url 'netflix_main' %}">Home</a></li>
+            <li><a href="{% url 'tv_shows' %}">TV Shows</a></li>
+            <li><a href="{% url 'movies' %}">Movies</a></li>
+            <li><a href="{% url 'games' %}">Games</a></li>
+            <li><a href="{% url 'new_popular' %}">New & Popular</a></li>
+            <li><a href="{% url 'my_list' %}" class="active">My List</a></li>
+        </ul>
+        <div class="nav-icons">
+            <div class="search-bar">
+                <i class="fas fa-search"></i>
+                <input type="text" placeholder="Titles, people, genres">
+            </div>
+            {% if user.is_authenticated %}
+            <span>
+                <a href="{% url 'settings' %}">
+                    <button type="button" class="settings">
+                        <img src="{% static 'assets/images/settings.svg' %}" alt="Settings">
+                        Settings
+                    </button>
+                </a>
+            </span>
+            <span>
+                <a href="{% url 'gift_cards' %}">
+                    <button type="button" class="settings">Gift Cards</button>
+                </a>
+            </span>
+            {% endif %}
+            <span>
+                {% if user.is_authenticated %}
+                <a href="{% url 'logout' %}"><button type="button" class="signin">Log Out</button></a>
+                {% else %}
+                <a href="{% url 'home' %}"><button type="button" class="signin">Sign In</button></a>
+                {% endif %}
+            </span>
+        </div>
+    </div>
+
+    <!-- My List Header -->
+    <div class="my-list-header">
+        <h1>My List</h1>
+        <div class="list-controls">
+            <div class="sort-options">
+                <button class="active-sort">Suggested</button>
+                <button>Recently Added</button>
+                <button>Alphabetical</button>
+            </div>
+            <div class="view-toggle">
+                <button class="grid-view active">
+                    <i class="fas fa-th-large"></i>
+                </button>
+                <button class="list-view">
+                    <i class="fas fa-list"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- My List Content -->
+    <div class="my-list-content">
+        {% if user.is_authenticated %}
+            <div class="items-grid">
+                <div class="item-card">
+                    <img src="https://upload.wikimedia.org/wikipedia/en/2/2e/Ramayan_1987_TV_series.jpg" alt="Ramayana">
+                    <div class="item-info">
+                        <h3>Ramayana: The Legend</h3>
+                        <div class="meta">
+                            <span>Adventure • Fantasy</span>
+                        </div>
+                        <p class="item-description">
+                            The epic tale of Lord Rama's journey, filled with adventure, courage, and devotion.
+                        </p>
+                        <div class="card-buttons">
+                            <button class="card-btn"><i class="fas fa-play"></i></button>
+                            <button class="card-btn"><i class="fas fa-check"></i></button>
+                            <button class="card-btn"><i class="fas fa-thumbs-up"></i></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="item-card">
+                    <img src="https://upload.wikimedia.org/wikipedia/en/9/99/Dangal_Poster.jpg" alt="Dangal">
+                    <div class="item-info">
+                        <h3>Dangal</h3>
+                        <div class="meta">
+                            <span>Sports • Biography</span>
+                        </div>
+                        <p class="item-description">
+                            A former wrestler trains his daughters to become world-class wrestlers.
+                        </p>
+                        <div class="card-buttons">
+                            <button class="card-btn"><i class="fas fa-play"></i></button>
+                            <button class="card-btn"><i class="fas fa-check"></i></button>
+                            <button class="card-btn"><i class="fas fa-thumbs-up"></i></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="item-card">
+                    <img src="https://upload.wikimedia.org/wikipedia/en/d/df/3_idiots_poster.jpg" alt="3 Idiots">
+                    <div class="item-info">
+                        <h3>3 Idiots</h3>
+                        <div class="meta">
+                            <span>Comedy • Drama</span>
+                        </div>
+                        <p class="item-description">
+                            Two friends search for their college friend who inspired them to think differently.
+                        </p>
+                        <div class="card-buttons">
+                            <button class="card-btn"><i class="fas fa-play"></i></button>
+                            <button class="card-btn"><i class="fas fa-check"></i></button>
+                            <button class="card-btn"><i class="fas fa-thumbs-up"></i></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="item-card">
+                    <img src="https://upload.wikimedia.org/wikipedia/en/6/6e/Bajrangi_Bhaijaan_Poster.jpg" alt="Bajrangi Bhaijaan">
+                    <div class="item-info">
+                        <h3>Bajrangi Bhaijaan</h3>
+                        <div class="meta">
+                            <span>Drama • Adventure</span>
+                        </div>
+                        <p class="item-description">
+                            An Indian man with a magnanimous heart takes a young mute Pakistani girl back to her homeland.
+                        </p>
+                        <div class="card-buttons">
+                            <button class="card-btn"><i class="fas fa-play"></i></button>
+                            <button class="card-btn"><i class="fas fa-check"></i></button>
+                            <button class="card-btn"><i class="fas fa-thumbs-up"></i></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="item-card">
+                    <img src="{% static 'assets/images/pushpa.webp' %}" alt="Pushpa">
+                    <div class="item-info">
+                        <h3>Pushpa</h3>
+                        <div class="meta">
+                            <span>Action • Crime</span>
+                        </div>
+                        <p class="item-description">
+                            A laborer rises through the ranks of a red sandalwood smuggling syndicate.
+                        </p>
+                        <div class="card-buttons">
+                            <button class="card-btn"><i class="fas fa-play"></i></button>
+                            <button class="card-btn"><i class="fas fa-check"></i></button>
+                            <button class="card-btn"><i class="fas fa-thumbs-up"></i></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="item-card">
+                    <img src="{% static 'assets/images/dragon.jpeg' %}" alt="Dragon Quest">
+                    <div class="item-info">
+                        <h3>Dragon Quest</h3>
+                        <div class="meta">
+                            <span>RPG • Adventure</span>
+                        </div>
+                        <p class="item-description">
+                            Embark on an epic adventure in this classic RPG game.
+                        </p>
+                        <div class="card-buttons">
+                            <button class="card-btn"><i class="fas fa-play"></i></button>
+                            <button class="card-btn"><i class="fas fa-check"></i></button>
+                            <button class="card-btn"><i class="fas fa-thumbs-up"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% else %}
+            <div class="empty-list">
+                <div class="empty-list-message">
+                    <i class="fas fa-bookmark"></i>
+                    <h2>Your list is empty</h2>
+                    <p>Add TV shows, movies, and games to your list to watch and play them later.</p>
+                    <a href="{% url 'netflix_main' %}" class="browse-button">Browse Content</a>
+                </div>
+                <div class="suggestions">
+                    <h3>You might like these</h3>
+                    <div class="suggestion-slider">
+                        <div class="item-card">
+                            <img src="https://upload.wikimedia.org/wikipedia/en/7/7e/Swades_poster.jpg" alt="Swades">
+                            <div class="item-info">
+                                <h3>Swades</h3>
+                                <div class="meta">
+                                    <span>Drama • Patriotic</span>
+                                </div>
+                                <div class="card-buttons">
+                                    <button class="card-btn"><i class="fas fa-play"></i></button>
+                                    <button class="card-btn"><i class="fas fa-plus"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item-card">
+                            <img src="https://upload.wikimedia.org/wikipedia/en/8/86/Taare_Zameen_Par.jpg" alt="Taare Zameen Par">
+                            <div class="item-info">
+                                <h3>Taare Zameen Par</h3>
+                                <div class="meta">
+                                    <span>Drama • Family</span>
+                                </div>
+                                <div class="card-buttons">
+                                    <button class="card-btn"><i class="fas fa-play"></i></button>
+                                    <button class="card-btn"><i class="fas fa-plus"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item-card">
+                            <img src="https://upload.wikimedia.org/wikipedia/en/2/2e/Chak_De%21_India.jpg" alt="Chak De India">
+                            <div class="item-info">
+                                <h3>Chak De India</h3>
+                                <div class="meta">
+                                    <span>Sports • Drama</span>
+                                </div>
+                                <div class="card-buttons">
+                                    <button class="card-btn"><i class="fas fa-play"></i></button>
+                                    <button class="card-btn"><i class="fas fa-plus"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="social-links">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+            </div>
+            <div class="footer-links">
+                <div class="footer-col">
+                    <a href="#">Audio Description</a>
+                    <a href="#">Investor Relations</a>
+                    <a href="#">Legal Notices</a>
+                </div>
+                <div class="footer-col">
+                    <a href="#">Help Center</a>
+                    <a href="#">Jobs</a>
+                    <a href="#">Cookie Preferences</a>
+                </div>
+                <div class="footer-col">
+                    <a href="#">Gift Cards</a>
+                    <a href="#">Terms of Use</a>
+                    <a href="#">Corporate Information</a>
+                </div>
+                <div class="footer-col">
+                    <a href="#">Media Center</a>
+                    <a href="#">Privacy</a>
+                    <a href="#">Contact Us</a>
+                </div>
+            </div>
+            <div class="service-code">
+                <button>Service Code</button>
+            </div>
+            <div class="copyright">
+                <p>&copy; 1997-2023 Netflix, Inc.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="{% static 'my_list.js' %}"></script>
+</body>
+</html> 

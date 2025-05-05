@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Netflix TV Shows</title>
-    <link rel="stylesheet" href="{% static 'tv_shows.css' %}">
+    <title>Netflix - New & Popular</title>
+    <link rel="stylesheet" href="{% static 'new_popular.css' %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="icon" href="{% static 'assets/images/logo.svg' %}" type="image/svg+xml">
 </head>
@@ -17,11 +17,11 @@
         </div>
         <ul class="nav-links">
             <li><a href="{% url 'netflix_main' %}">Home</a></li>
-            <li><a href="{% url 'tv_shows' %}" class="active">TV Shows</a></li>
-            <li><a href="{% url 'netflix_main' %}">Movies</a></li>
-            <li><a href="{% url 'netflix_main' %}">Games</a></li>
-            <li><a href="{% url 'netflix_main' %}">New & Popular</a></li>
-            <li><a href="{% url 'netflix_main' %}">My List</a></li>
+            <li><a href="{% url 'tv_shows' %}">TV Shows</a></li>
+            <li><a href="{% url 'movies' %}">Movies</a></li>
+            <li><a href="{% url 'games' %}">Games</a></li>
+            <li><a href="{% url 'new_popular' %}" class="active">New & Popular</a></li>
+            <li><a href="{% url 'my_list' %}">My List</a></li>
         </ul>
         <div class="nav-icons">
             <div class="search-bar">
@@ -55,22 +55,18 @@
 
     <!-- Hero Section -->
     <div class="hero-section">
-        <div class="hero-image main-hero-bg">
+        <div class="hero-image ramayana-bg">
             <div class="hero-overlay">
                 <div class="hero-text">
-                    <div class="match-rating"><i class="fas fa-thumbs-up"></i> 98% Match</div>
-                    <h1 class="hero-title">DEVA</h1>
+                    <div class="new-badge">NEW</div>
+                    <h1 class="hero-title">Ramayana: The Legend</h1>
                     <p class="hero-description">
-                        A brilliant but rebellious police officer investigates a murder that leads him to a larger conspiracy in a corrupt system. His pursuit of justice brings him face to face with powerful enemies.
+                        The epic tale of Lord Rama's journey, filled with adventure, courage, and devotion. Experience this timeless legend brought to life with stunning visuals and captivating performances.
                     </p>
                     <div class="hero-meta">
-                        <span class="rating"><i class="fas fa-star"></i> TV-MA</span>
-                        <span class="duration"><i class="far fa-clock"></i> 2 Seasons</span>
-                        <span class="genres"><i class="fas fa-film"></i> Action • Thriller • Crime</span>
-                    </div>
-                    <div class="hero-badges">
-                        <span class="top-badge">TOP 10</span>
-                        <span class="new-badge">NEW EPISODES</span>
+                        <span class="release"><i class="far fa-calendar-alt"></i> Just Released</span>
+                        <span class="duration"><i class="far fa-clock"></i> 2h 45m</span>
+                        <span class="genres"><i class="fas fa-film"></i> Adventure • Fantasy • Drama</span>
                     </div>
                     <div class="hero-buttons">
                         <button class="play-button">
@@ -89,21 +85,18 @@
     </div>
 
     <!-- Main Content -->
-    <div class="shows-container">
-        <!-- Continue Watching -->
-        <section class="shows-row">
-            <h2><i class="fas fa-play-circle"></i> Continue Watching</h2>
-            <div class="shows-slider">
-                <div class="show-card">
-                    <img src="{% static 'assets/images/dragon.jpeg' %}" alt="Wednesday">
-                    <div class="progress-bar">
-                        <div class="progress" style="width: 45%"></div>
-                    </div>
-                    <div class="show-info">
-                        <h3>Dragon</h3>
+    <div class="content-container">
+        <!-- New Releases -->
+        <section class="content-row">
+            <h2><i class="fas fa-fire"></i> New This Week</h2>
+            <div class="content-slider">
+                <div class="item-card">
+                    <div class="new-badge">1 Day Ago</div>
+                    <img src="https://upload.wikimedia.org/wikipedia/en/2/2e/Ramayan_1987_TV_series.jpg" alt="Ramayana">
+                    <div class="item-info">
+                        <h3>Ramayana: The Legend</h3>
                         <div class="meta">
-                            <span>S1:E4</span>
-                            <span>45min left</span>
+                            <span>Adventure • Fantasy</span>
                         </div>
                         <div class="card-buttons">
                             <button class="card-btn"><i class="fas fa-play"></i></button>
@@ -111,16 +104,13 @@
                         </div>
                     </div>
                 </div>
-                <div class="show-card">
-                    <img src="{% static 'assets/images/khakee.jpeg' %}" alt="The Witcher">
-                    <div class="progress-bar">
-                        <div class="progress" style="width: 75%"></div>
-                    </div>
-                    <div class="show-info">
-                        <h3>Khakee</h3>
+                <div class="item-card">
+                    <div class="new-badge">2 Days Ago</div>
+                    <img src="https://upload.wikimedia.org/wikipedia/en/2/2b/Mahabharat_1988_TV_series.jpg" alt="Mahabharat">
+                    <div class="item-info">
+                        <h3>Mahabharat</h3>
                         <div class="meta">
-                            <span>S2:E6</span>
-                            <span>15min left</span>
+                            <span>Epic • Drama</span>
                         </div>
                         <div class="card-buttons">
                             <button class="card-btn"><i class="fas fa-play"></i></button>
@@ -128,20 +118,66 @@
                         </div>
                     </div>
                 </div>
-                <div class="show-card">
-                    <img src="{% static 'assets/images/officer.jpeg' %}" alt="Money Heist">
-                    <div class="progress-bar">
-                        <div class="progress" style="width: 30%"></div>
-                    </div>
-                    <div class="show-info">
-                        <h3>Officer</h3>
+                <div class="item-card">
+                    <div class="new-badge">3 Days Ago</div>
+                    <img src="https://upload.wikimedia.org/wikipedia/en/7/7e/Swades_poster.jpg" alt="Swades">
+                    <div class="item-info">
+                        <h3>Swades</h3>
                         <div class="meta">
-                            <span>S1:E2</span>
-                            <span>50min left</span>
+                            <span>Drama • Patriotic</span>
                         </div>
                         <div class="card-buttons">
                             <button class="card-btn"><i class="fas fa-play"></i></button>
                             <button class="card-btn"><i class="fas fa-plus"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Coming Next Week -->
+        <section class="content-row">
+            <h2><i class="fas fa-calendar-alt"></i> Coming Next Week</h2>
+            <div class="content-slider">
+                <div class="item-card">
+                    <div class="coming-badge">Monday</div>
+                    <img src="https://upload.wikimedia.org/wikipedia/en/8/86/Taare_Zameen_Par.jpg" alt="Taare Zameen Par">
+                    <div class="item-info">
+                        <h3>Taare Zameen Par</h3>
+                        <div class="meta">
+                            <span>Drama • Family</span>
+                        </div>
+                        <div class="card-buttons">
+                            <button class="card-btn remind"><i class="far fa-bell"></i></button>
+                            <button class="card-btn"><i class="fas fa-info-circle"></i></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="item-card">
+                    <div class="coming-badge">Wednesday</div>
+                    <img src="https://upload.wikimedia.org/wikipedia/en/2/2e/Chak_De%21_India.jpg" alt="Chak De India">
+                    <div class="item-info">
+                        <h3>Chak De India</h3>
+                        <div class="meta">
+                            <span>Sports • Drama</span>
+                        </div>
+                        <div class="card-buttons">
+                            <button class="card-btn remind"><i class="far fa-bell"></i></button>
+                            <button class="card-btn"><i class="fas fa-info-circle"></i></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="item-card">
+                    <div class="coming-badge">Friday</div>
+                    <img src="https://upload.wikimedia.org/wikipedia/en/b/b6/Lagaan.jpg" alt="Lagaan">
+                    <div class="item-info">
+                        <h3>Lagaan</h3>
+                        <div class="meta">
+                            <span>Sports • Historical</span>
+                        </div>
+                        <div class="card-buttons">
+                            <button class="card-btn remind"><i class="far fa-bell"></i></button>
+                            <button class="card-btn"><i class="fas fa-info-circle"></i></button>
                         </div>
                     </div>
                 </div>
@@ -149,16 +185,16 @@
         </section>
 
         <!-- Trending Now -->
-        <section class="shows-row">
-            <h2><i class="fas fa-fire"></i> Trending Now</h2>
-            <div class="shows-slider">
-                <div class="show-card">
+        <section class="content-row">
+            <h2><i class="fas fa-chart-line"></i> Trending Now</h2>
+            <div class="content-slider">
+                <div class="item-card">
                     <div class="rank">1</div>
-                    <img src="{% static 'assets/images/squid.jpeg' %}" alt="Squid Game">
-                    <div class="show-info">
-                        <h3>Squid Game</h3>
+                    <img src="https://upload.wikimedia.org/wikipedia/en/9/99/Dangal_Poster.jpg" alt="Dangal">
+                    <div class="item-info">
+                        <h3>Dangal</h3>
                         <div class="meta">
-                            <span>Drama • Thriller</span>
+                            <span>Sports • Biography</span>
                         </div>
                         <div class="card-buttons">
                             <button class="card-btn"><i class="fas fa-play"></i></button>
@@ -166,13 +202,13 @@
                         </div>
                     </div>
                 </div>
-                <div class="show-card">
+                <div class="item-card">
                     <div class="rank">2</div>
-                    <img src="{% static 'assets/images/raw.jpeg' %}" alt="The Crown">
-                    <div class="show-info">
-                        <h3>Raw</h3>
+                    <img src="https://upload.wikimedia.org/wikipedia/en/d/df/3_idiots_poster.jpg" alt="3 Idiots">
+                    <div class="item-info">
+                        <h3>3 Idiots</h3>
                         <div class="meta">
-                            <span>Drama • Biography</span>
+                            <span>Comedy • Drama</span>
                         </div>
                         <div class="card-buttons">
                             <button class="card-btn"><i class="fas fa-play"></i></button>
@@ -180,13 +216,13 @@
                         </div>
                     </div>
                 </div>
-                <div class="show-card">
+                <div class="item-card">
                     <div class="rank">3</div>
-                    <img src="{% static 'blank.jpg' %}" alt="Breaking Bad">
-                    <div class="show-info">
-                        <h3>Test</h3>
+                    <img src="https://upload.wikimedia.org/wikipedia/en/6/6e/Bajrangi_Bhaijaan_Poster.jpg" alt="Bajrangi Bhaijaan">
+                    <div class="item-info">
+                        <h3>Bajrangi Bhaijaan</h3>
                         <div class="meta">
-                            <span>Crime • Drama</span>
+                            <span>Drama • Adventure</span>
                         </div>
                         <div class="card-buttons">
                             <button class="card-btn"><i class="fas fa-play"></i></button>
@@ -197,16 +233,16 @@
             </div>
         </section>
 
-        <!-- Popular on Netflix -->
-        <section class="shows-row">
-            <h2><i class="fas fa-crown"></i> Popular on Netflix</h2>
-            <div class="shows-slider">
-                <div class="show-card">
-                    <img src="{% static 'assets/images/deva.jpg' %}" alt="Dark">
-                    <div class="show-info">
-                        <h3>Deva</h3>
+        <!-- Popular with Kids -->
+        <section class="content-row">
+            <h2><i class="fas fa-child"></i> Popular with Kids</h2>
+            <div class="content-slider">
+                <div class="item-card">
+                    <img src="https://upload.wikimedia.org/wikipedia/en/2/2c/Chhota_Bheem_and_the_Throne_of_Bali.jpg" alt="Chhota Bheem">
+                    <div class="item-info">
+                        <h3>Chhota Bheem</h3>
                         <div class="meta">
-                            <span>Mystery • Sci-Fi</span>
+                            <span>Animation • Adventure</span>
                         </div>
                         <div class="card-buttons">
                             <button class="card-btn"><i class="fas fa-play"></i></button>
@@ -214,12 +250,12 @@
                         </div>
                     </div>
                 </div>
-                <div class="show-card">
-                    <img src="{% static 'assets/images/pushpa.webp' %}" alt="The Queen's Gambit">
-                    <div class="show-info">
-                        <h3>Pushpa</h3>
+                <div class="item-card">
+                    <img src="https://upload.wikimedia.org/wikipedia/en/2/2e/Motu_Patlu_King_of_Kings_poster.jpg" alt="Motu Patlu">
+                    <div class="item-info">
+                        <h3>Motu Patlu</h3>
                         <div class="meta">
-                            <span>Drama • Action</span>
+                            <span>Animation • Comedy</span>
                         </div>
                         <div class="card-buttons">
                             <button class="card-btn"><i class="fas fa-play"></i></button>
@@ -227,61 +263,12 @@
                         </div>
                     </div>
                 </div>
-                <div class="show-card">
-                    <img src="{% static 'assets/images/bg.jpg' %}" alt="Bridgerton">
-                    <div class="show-info">
-                        <h3>Bridgerton</h3>
+                <div class="item-card">
+                    <img src="https://upload.wikimedia.org/wikipedia/en/7/7e/Doraemon_2005.png" alt="Doraemon">
+                    <div class="item-info">
+                        <h3>Doraemon</h3>
                         <div class="meta">
-                            <span>Romance • Drama</span>
-                        </div>
-                        <div class="card-buttons">
-                            <button class="card-btn"><i class="fas fa-play"></i></button>
-                            <button class="card-btn"><i class="fas fa-plus"></i></button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Award-Winning Shows -->
-        <section class="shows-row">
-            <h2><i class="fas fa-award"></i> Award-Winning TV Shows</h2>
-            <div class="shows-slider">
-                <div class="show-card">
-                    <div class="award-badge">Emmy Winner</div>
-                    <img src="{% static 'assets/images/dragon.jpeg' %}" alt="Breaking Bad">
-                    <div class="show-info">
-                        <h3>Dragon</h3>
-                        <div class="meta">
-                            <span>16 Emmy Awards</span>
-                        </div>
-                        <div class="card-buttons">
-                            <button class="card-btn"><i class="fas fa-play"></i></button>
-                            <button class="card-btn"><i class="fas fa-plus"></i></button>
-                        </div>
-                    </div>
-                </div>
-                <div class="show-card">
-                    <div class="award-badge">Golden Globe</div>
-                    <img src="{% static 'assets/images/khakee.jpeg' %}" alt="The Queen's Gambit">
-                    <div class="show-info">
-                        <h3>Khakee</h3>
-                        <div class="meta">
-                            <span>2 Golden Globes</span>
-                        </div>
-                        <div class="card-buttons">
-                            <button class="card-btn"><i class="fas fa-play"></i></button>
-                            <button class="card-btn"><i class="fas fa-plus"></i></button>
-                        </div>
-                    </div>
-                </div>
-                <div class="show-card">
-                    <div class="award-badge">Emmy Winner</div>
-                    <img src="{% static 'assets/images/officer.jpeg' %}" alt="The Crown">
-                    <div class="show-info">
-                        <h3>Officer</h3>
-                        <div class="meta">
-                            <span>21 Emmy Awards</span>
+                            <span>Animation • Sci-Fi</span>
                         </div>
                         <div class="card-buttons">
                             <button class="card-btn"><i class="fas fa-play"></i></button>
@@ -333,6 +320,6 @@
         </div>
     </footer>
 
-    <script src="{% static 'tv_shows.js' %}"></script>
+    <script src="{% static 'new_popular.js' %}"></script>
 </body>
-</html>
+</html> 

@@ -5,7 +5,7 @@ import requests
 app = Flask(__name__)
 CORS(app)
 
-RAPIDAPI_KEY = '4e9afe57acmsha5e22d76629d6bcp1720f3jsn996f27c7fa5f'
+RAPIDAPI_KEY = '7103fdad2cmshd7bff10aab75033p18923djsn1b1ee55b8181'
 RAPIDAPI_HOST = 'imdb236.p.rapidapi.com'
 HEADERS = {
     'x-rapidapi-key': RAPIDAPI_KEY,

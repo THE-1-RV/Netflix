@@ -1,0 +1,338 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Netflix Games</title>
+    <link rel="stylesheet" href="{% static 'games.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="icon" href="{% static 'assets/images/logo.svg' %}" type="image/svg+xml">
+</head>
+<body>
+    <!-- Navbar -->
+    <div class="nav">
+        <div class="leftnav">
+            <img src="{% static 'assets/images/logo.svg' %}" alt="Netflix">
+        </div>
+        <ul class="nav-links">
+            <li><a href="{% url 'netflix_main' %}">Home</a></li>
+            <li><a href="{% url 'tv_shows' %}">TV Shows</a></li>
+            <li><a href="{% url 'movies' %}">Movies</a></li>
+            <li><a href="{% url 'games' %}" class="active">Games</a></li>
+            <li><a href="{% url 'new_popular' %}">New & Popular</a></li>
+            <li><a href="{% url 'my_list' %}">My List</a></li>
+        </ul>
+        <div class="nav-icons">
+            <div class="search-bar">
+                <i class="fas fa-search"></i>
+                <input type="text" placeholder="Games, genres">
+            </div>
+            {% if user.is_authenticated %}
+            <span>
+                <a href="{% url 'settings' %}">
+                    <button type="button" class="settings">
+                        <img src="{% static 'assets/images/settings.svg' %}" alt="Settings">
+                        Settings
+                    </button>
+                </a>
+            </span>
+            <span>
+                <a href="{% url 'gift_cards' %}">
+                    <button type="button" class="settings">Gift Cards</button>
+                </a>
+            </span>
+            {% endif %}
+            <span>
+                {% if user.is_authenticated %}
+                <a href="{% url 'logout' %}"><button type="button" class="signin">Log Out</button></a>
+                {% else %}
+                <a href="{% url 'home' %}"><button type="button" class="signin">Sign In</button></a>
+                {% endif %}
+            </span>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <div class="hero-section">
+        <div class="hero-image games-bg">
+            <div class="hero-overlay">
+                <div class="hero-text">
+                    <h1 class="hero-title">NETFLIX GAMES</h1>
+                    <p class="hero-description">
+                        Games on Netflix! Play exclusive mobile games - included with your membership. No ads, no additional fees, no in-app purchases. Download the Netflix app on your mobile device to play.
+                    </p>
+                    <div class="hero-badges">
+                        <span class="info-badge"><i class="fas fa-info-circle"></i> Available on mobile only</span>
+                        <span class="device-badge"><i class="fas fa-mobile-alt"></i> iOS & Android</span>
+                    </div>
+                    <div class="hero-buttons">
+                        <button class="download-button">
+                            <i class="fas fa-download"></i> Get Mobile App
+                        </button>
+                        <button class="learn-more-button">
+                            <i class="fas fa-info-circle"></i> Learn More
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="games-container">
+        <!-- Featured Games -->
+        <section class="games-row featured-games">
+            <h2><i class="fas fa-gamepad"></i> Featured Games</h2>
+            <div class="games-grid">
+                <div class="game-card featured">
+                    <div class="new-badge">NEW</div>
+                    <img src="{% static 'assets/images/dragon.jpeg' %}" alt="Dragon Quest">
+                    <div class="game-info">
+                        <h3>Dragon Quest</h3>
+                        <div class="meta">
+                            <span>RPG • Adventure</span>
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                        </div>
+                        <p class="game-description">
+                            Embark on an epic adventure in this classic RPG. Slay monsters, explore dungeons, and save the kingdom.
+                        </p>
+                        <div class="game-buttons">
+                            <button class="install-btn"><i class="fas fa-download"></i> Install</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="game-card featured">
+                    <img src="{% static 'assets/images/raw.jpeg' %}" alt="Raw Combat">
+                    <div class="game-info">
+                        <h3>Raw Combat</h3>
+                        <div class="meta">
+                            <span>Fighting • Action</span>
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                        </div>
+                        <p class="game-description">
+                            Test your skills in this fast-paced fighting game. Master combos and defeat your opponents.
+                        </p>
+                        <div class="game-buttons">
+                            <button class="install-btn"><i class="fas fa-download"></i> Install</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Action Games -->
+        <section class="games-row">
+            <h2><i class="fas fa-fist-raised"></i> Action Games</h2>
+            <div class="games-slider">
+                <div class="game-card">
+                    <img src="{% static 'blank.jpg' %}" alt="Officer Duty">
+                    <div class="game-info">
+                        <h3>Officer Duty</h3>
+                        <div class="meta">
+                            <span>Action • Shooter</span>
+                        </div>
+                        <div class="card-buttons">
+                            <button class="card-btn"><i class="fas fa-info-circle"></i></button>
+                            <button class="card-btn"><i class="fas fa-download"></i></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="game-card">
+                    <img src="{% static 'assets/images/deva.jpg' %}" alt="Deva: The Game">
+                    <div class="game-info">
+                        <h3>Deva: The Game</h3>
+                        <div class="meta">
+                            <span>Action • Adventure</span>
+                        </div>
+                        <div class="card-buttons">
+                            <button class="card-btn"><i class="fas fa-info-circle"></i></button>
+                            <button class="card-btn"><i class="fas fa-download"></i></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="game-card">
+                    <img src="{% static 'assets/images/raw.jpeg' %}" alt="Raw Combat">
+                    <div class="game-info">
+                        <h3>Raw Combat</h3>
+                        <div class="meta">
+                            <span>Fighting • Action</span>
+                        </div>
+                        <div class="card-buttons">
+                            <button class="card-btn"><i class="fas fa-info-circle"></i></button>
+                            <button class="card-btn"><i class="fas fa-download"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Adventure Games -->
+        <section class="games-row">
+            <h2><i class="fas fa-mountain"></i> Adventure Games</h2>
+            <div class="games-slider">
+                <div class="game-card">
+                    <img src="{% static 'assets/images/dragon.jpeg' %}" alt="Dragon Quest">
+                    <div class="game-info">
+                        <h3>Dragon Quest</h3>
+                        <div class="meta">
+                            <span>RPG • Adventure</span>
+                        </div>
+                        <div class="card-buttons">
+                            <button class="card-btn"><i class="fas fa-info-circle"></i></button>
+                            <button class="card-btn"><i class="fas fa-download"></i></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="game-card">
+                    <img src="{% static 'assets/images/khakee.jpeg' %}" alt="Khakee Quest">
+                    <div class="game-info">
+                        <h3>Khakee Quest</h3>
+                        <div class="meta">
+                            <span>Adventure • Mystery</span>
+                        </div>
+                        <div class="card-buttons">
+                            <button class="card-btn"><i class="fas fa-info-circle"></i></button>
+                            <button class="card-btn"><i class="fas fa-download"></i></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="game-card">
+                    <img src="{% static 'assets/images/pushpa.webp' %}" alt="Pushpa: The Rise">
+                    <div class="game-info">
+                        <h3>Pushpa: The Rise</h3>
+                        <div class="meta">
+                            <span>Adventure • Action</span>
+                        </div>
+                        <div class="card-buttons">
+                            <button class="card-btn"><i class="fas fa-info-circle"></i></button>
+                            <button class="card-btn"><i class="fas fa-download"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Puzzle Games -->
+        <section class="games-row">
+            <h2><i class="fas fa-puzzle-piece"></i> Puzzle Games</h2>
+            <div class="games-slider">
+                <div class="game-card">
+                    <img src="{% static 'blank.jpg' %}" alt="Mind Teaser">
+                    <div class="game-info">
+                        <h3>Mind Teaser</h3>
+                        <div class="meta">
+                            <span>Puzzle • Strategy</span>
+                        </div>
+                        <div class="card-buttons">
+                            <button class="card-btn"><i class="fas fa-info-circle"></i></button>
+                            <button class="card-btn"><i class="fas fa-download"></i></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="game-card">
+                    <img src="{% static 'assets/images/squid.jpeg' %}" alt="Squid Puzzle">
+                    <div class="game-info">
+                        <h3>Squid Puzzle</h3>
+                        <div class="meta">
+                            <span>Puzzle • Challenge</span>
+                        </div>
+                        <div class="card-buttons">
+                            <button class="card-btn"><i class="fas fa-info-circle"></i></button>
+                            <button class="card-btn"><i class="fas fa-download"></i></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="game-card">
+                    <img src="{% static 'assets/images/bg.jpg' %}" alt="Cosmic Patterns">
+                    <div class="game-info">
+                        <h3>Cosmic Patterns</h3>
+                        <div class="meta">
+                            <span>Puzzle • Relaxing</span>
+                        </div>
+                        <div class="card-buttons">
+                            <button class="card-btn"><i class="fas fa-info-circle"></i></button>
+                            <button class="card-btn"><i class="fas fa-download"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Download App Section -->
+    <section class="download-section">
+        <div class="download-content">
+            <div class="download-text">
+                <h2>Get the Netflix Mobile App</h2>
+                <p>To play these games and more, download the Netflix app on your mobile device.</p>
+                <div class="app-stores">
+                    <a href="#" class="app-store-btn">
+                        <i class="fab fa-apple"></i> App Store
+                    </a>
+                    <a href="#" class="app-store-btn">
+                        <i class="fab fa-google-play"></i> Google Play
+                    </a>
+                </div>
+            </div>
+            <div class="device-image">
+                <img src="{% static 'blank.jpg' %}" alt="Mobile Devices">
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="social-links">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+            </div>
+            <div class="footer-links">
+                <div class="footer-col">
+                    <a href="#">Audio Description</a>
+                    <a href="#">Investor Relations</a>
+                    <a href="#">Legal Notices</a>
+                </div>
+                <div class="footer-col">
+                    <a href="#">Help Center</a>
+                    <a href="#">Jobs</a>
+                    <a href="#">Cookie Preferences</a>
+                </div>
+                <div class="footer-col">
+                    <a href="#">Gift Cards</a>
+                    <a href="#">Terms of Use</a>
+                    <a href="#">Corporate Information</a>
+                </div>
+                <div class="footer-col">
+                    <a href="#">Media Center</a>
+                    <a href="#">Privacy</a>
+                    <a href="#">Contact Us</a>
+                </div>
+            </div>
+            <div class="service-code">
+                <button>Service Code</button>
+            </div>
+            <div class="copyright">
+                <p>&copy; 1997-2023 Netflix, Inc.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="{% static 'games.js' %}"></script>
+</body>
+</html> 
